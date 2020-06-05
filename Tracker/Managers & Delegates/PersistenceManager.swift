@@ -15,9 +15,10 @@ struct PersistenceManager {
     
     /// The primary `NSManagedObjectContext` for the app
     ///
-    /// You shouldn't really need to communicate with this outside the `PersistenceManager`.
+    /// You shouldn't really need to communicate with this outside the `PersistenceManager` unless
+    /// making custom NSManagedObject initialisers.
     
-    private let primaryContext: NSManagedObjectContext = {
+    let primaryContext: NSManagedObjectContext = {
         let container = NSPersistentCloudKitContainer(name: "Tracker")
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
@@ -36,6 +37,14 @@ struct PersistenceManager {
         if primaryContext.hasChanges {
             try? primaryContext.save()
         }
+    }
+    
+    func delete(_ object: NSManagedObject?) {
+        guard let object = object else {
+            return
+        }
+        primaryContext.delete(object)
+        saveIfNecessary()
     }
     
     

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var emptyStateLabel: UILabel!
@@ -17,21 +17,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        configureEmptyState()
+     
+        configureForEmptyState()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ThoughtCell")
     }
     
     
     // MARK: - Configuring
     
-    private func configureEmptyState() {
+    private func configureForEmptyState() {
         tableView.isHidden = isEmpty
         emptyStateLabel.isHidden = !isEmpty
+    }
+    
+    
+    // MARK: - Actions
+    
+    @IBAction private func addThought() {
+        _ = Thought(contents: "Hello World", distress: 10)
+        PersistenceManager.shared.saveIfNecessary()
     }
     
     
@@ -46,10 +50,37 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return section?.numberOfObjects ?? 0
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let indexPath = IndexPath(row: 0, section: section) // If the section exists, then it must have at least one object
+        guard let section = resultsController?.object(at: indexPath) else {
+            return nil
+        }
+        return sectionHeaderDateFormatter.string(from: section.timestamp)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThoughtCell")!
-        _ = resultsController?.object(at: indexPath)
+        let thought = resultsController?.object(at: indexPath)
+        cell.textLabel?.text = thought?.contents
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            let thought = resultsController?.object(at: indexPath)
+            PersistenceManager.shared.delete(thought)
+        default:
+            return
+        }
     }
     
     
@@ -60,15 +91,69 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
+    // MARK: - NSFetchedResultsControllerDelegate
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard let indexPath = indexPath else {
+            return
+        }
+        
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        case .update:
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .move:
+            if let newIndexPath = newIndexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                
+            }
+        @unknown default:
+            return
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        default:
+            return // Can only ever insert or delete a section
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+        configureForEmptyState()
+    }
+    
+    
     // MARK: - Helpers
     
     private var isEmpty: Bool {
         return resultsController?.sections?.isEmpty == true
     }
     
+    private let sectionHeaderDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
+    
     private lazy var resultsController: NSFetchedResultsController<Thought>? = {
-        let descriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
-        let controller = PersistenceManager.shared.fetchedResultsController(type: Thought.self, sectionedBy: "timestamp", sortedBy: descriptors)
+        let timestamp = "timestamp"
+        let descriptors = [NSSortDescriptor(key: timestamp, ascending: true)]
+        let controller = PersistenceManager.shared.fetchedResultsController(type: Thought.self, sectionedBy: timestamp, sortedBy: descriptors)
+        controller?.delegate = self
         try? controller?.performFetch()
         return controller
     }()
