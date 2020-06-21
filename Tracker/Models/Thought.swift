@@ -40,6 +40,7 @@ class Thought: NSManagedObject {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.calendar = Calendar.current
+        formatter.locale = Locale.current
         formatter.timeZone = TimeZone.current
         return formatter.string(from: timestamp)
     }

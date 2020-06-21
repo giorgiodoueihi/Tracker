@@ -141,7 +141,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private let sectionHeaderDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateFormat = "EEEE, MMMM d"
+        formatter.calendar = Calendar.current
+        formatter.locale = Locale.current
+        formatter.timeZone = TimeZone.current
         return formatter
     }()
     
