@@ -34,8 +34,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Actions
     
     @IBAction private func addThought() {
-        _ = Thought(contents: "Hello World", distress: 10)
-        PersistenceManager.shared.saveIfNecessary()
+        SegueManager.shared.present(.addNewThought, controller: self)
     }
     
     

@@ -16,6 +16,7 @@
 		4415B71C248A153700CD1C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4415B71A248A153700CD1C09 /* LaunchScreen.storyboard */; };
 		4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B724248A15E500CD1C09 /* PersistenceManager.swift */; };
 		4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B726248A1A1A00CD1C09 /* Thought.swift */; };
+		44CAB0F0249EDDE40070BB4D /* SegueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CAB0EF249EDDE40070BB4D /* SegueManager.swift */; };
 		44DD2F47248A20C700B514F9 /* AddThoughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		4415B723248A154C00CD1C09 /* Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tracker.entitlements; sourceTree = "<group>"; };
 		4415B724248A15E500CD1C09 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		4415B726248A1A1A00CD1C09 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
+		44CAB0EF249EDDE40070BB4D /* SegueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueManager.swift; sourceTree = "<group>"; };
 		44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				4415B726248A1A1A00CD1C09 /* Thought.swift */,
+				44CAB0EF249EDDE40070BB4D /* SegueManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */,
 				4415B70D248A153600CD1C09 /* AppDelegate.swift in Sources */,
 				4415B70F248A153600CD1C09 /* SceneDelegate.swift in Sources */,
+				44CAB0F0249EDDE40070BB4D /* SegueManager.swift in Sources */,
 				44DD2F47248A20C700B514F9 /* AddThoughtViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

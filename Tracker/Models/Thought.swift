@@ -16,13 +16,14 @@ class Thought: NSManagedObject {
     @NSManaged var contents: String
     @NSManaged var distress: Int
     
-    convenience init(contents: String, distress: Int) {
+    
+    convenience init(contents: String, distress: Float) {
         self.init(entity: Thought.entity(), insertInto: PersistenceManager.shared.primaryContext)
         
         self.identifier = UUID()
         self.timestamp = Date()
         self.contents = contents
-        self.distress = distress
+        self.distress = Int(distress * 10)
     }
 
 }
