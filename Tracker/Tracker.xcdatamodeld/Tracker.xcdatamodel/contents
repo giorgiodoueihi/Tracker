@@ -4,9 +4,10 @@
         <attribute name="contents" optional="YES" attributeType="String"/>
         <attribute name="distress" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isoTimestamp" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Thought" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Thought" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

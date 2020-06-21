@@ -97,23 +97,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let indexPath = indexPath else {
-            return
-        }
-        
         switch type {
         case .insert:
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            guard let newIndexPath = newIndexPath else { return }
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
         case .update:
+            guard let indexPath = indexPath else { return }
             tableView.reloadRows(at: [indexPath], with: .automatic)
         case .delete:
+            guard let indexPath = indexPath else { return }
             tableView.deleteRows(at: [indexPath], with: .automatic)
         case .move:
-            if let newIndexPath = newIndexPath {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-                
-            }
+            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
         @unknown default:
             return
         }
@@ -149,9 +146,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }()
     
     private lazy var resultsController: NSFetchedResultsController<Thought>? = {
-        let timestamp = "timestamp"
-        let descriptors = [NSSortDescriptor(key: timestamp, ascending: true)]
-        let controller = PersistenceManager.shared.fetchedResultsController(type: Thought.self, sectionedBy: timestamp, sortedBy: descriptors)
+        let descriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
+        let controller = PersistenceManager.shared.fetchedResultsController(type: Thought.self, sectionedBy: "isoTimestamp", sortedBy: descriptors)
         controller?.delegate = self
         try? controller?.performFetch()
         return controller
