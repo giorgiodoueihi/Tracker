@@ -13,8 +13,8 @@ class RoundedButton: UIButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        addRoundedBorder()
-        addContentInsets()
+        setupRoundedBorder()
+        setupContentInsets()
         configureRoundedBorderColour()
     }
     
@@ -27,23 +27,23 @@ class RoundedButton: UIButton {
     }
     
     
+    // MARK: - Setup
+    
+    private func setupContentInsets() {
+        contentEdgeInsets = .init(top: 10, left: 20, bottom: 10, right: 20)
+    }
+    
+    private func setupRoundedBorder() {
+        layer.cornerRadius = 5
+        layer.borderWidth = 1
+        
+    }
+    
+    
     // MARK: - Configuring
     
     private func configureRoundedBorderColour() {
         layer.borderColor = titleLabel?.textColor.cgColor
-    }
-    
-    
-    // MARK: - Actions
-    
-    private func addContentInsets() {
-        contentEdgeInsets = .init(top: 10, left: 20, bottom: 10, right: 20)
-    }
-    
-    private func addRoundedBorder() {
-        layer.cornerRadius = 5
-        layer.borderWidth = 1
-        
     }
     
 }
