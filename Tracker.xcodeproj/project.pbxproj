@@ -16,6 +16,7 @@
 		4415B71C248A153700CD1C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4415B71A248A153700CD1C09 /* LaunchScreen.storyboard */; };
 		4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B724248A15E500CD1C09 /* PersistenceManager.swift */; };
 		4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B726248A1A1A00CD1C09 /* Thought.swift */; };
+		4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4473B20E249EED3800AC7AE5 /* RoundedButton.swift */; };
 		44CAB0F0249EDDE40070BB4D /* SegueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CAB0EF249EDDE40070BB4D /* SegueManager.swift */; };
 		44DD2F47248A20C700B514F9 /* AddThoughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		4415B723248A154C00CD1C09 /* Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tracker.entitlements; sourceTree = "<group>"; };
 		4415B724248A15E500CD1C09 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		4415B726248A1A1A00CD1C09 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
+		4473B20E249EED3800AC7AE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		44CAB0EF249EDDE40070BB4D /* SegueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueManager.swift; sourceTree = "<group>"; };
 		44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +69,7 @@
 		4415B70B248A153600CD1C09 /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				4473B20D249EED2F00AC7AE5 /* Views */,
 				44DD2F44248A1EC500B514F9 /* Controllers */,
 				44DD2F43248A1EB000B514F9 /* Models */,
 				44DD2F45248A1FDD00B514F9 /* Managers & Delegates */,
@@ -78,6 +81,14 @@
 				4415B718248A153700CD1C09 /* Assets.xcassets */,
 			);
 			path = Tracker;
+			sourceTree = "<group>";
+		};
+		4473B20D249EED2F00AC7AE5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4473B20E249EED3800AC7AE5 /* RoundedButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		44DD2F43248A1EB000B514F9 /* Models */ = {
@@ -183,6 +194,7 @@
 				4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */,
 				4415B711248A153600CD1C09 /* HomeViewController.swift in Sources */,
 				4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */,
+				4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */,
 				4415B70D248A153600CD1C09 /* AppDelegate.swift in Sources */,
 				4415B70F248A153600CD1C09 /* SceneDelegate.swift in Sources */,
 				44CAB0F0249EDDE40070BB4D /* SegueManager.swift in Sources */,

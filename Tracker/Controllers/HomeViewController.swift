@@ -12,7 +12,7 @@ import CoreData
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var emptyStateLabel: UILabel!
+    @IBOutlet private var emptyStateStackView: UIStackView!
     
     
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private func configureForEmptyState() {
         tableView.isHidden = isEmpty
-        emptyStateLabel.isHidden = !isEmpty
+        emptyStateStackView.isHidden = !isEmpty
     }
     
     
