@@ -180,7 +180,7 @@ Seneca</string>
                         <sections>
                             <tableViewSection id="NW2-jK-MVI">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="JSr-gR-lsN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="JSr-gR-lsN">
                                         <rect key="frame" x="0.0" y="18" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JSr-gR-lsN" id="MeC-DP-0kE">
@@ -209,14 +209,14 @@ Seneca</string>
                             </tableViewSection>
                             <tableViewSection id="diO-vU-GIF">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="M7e-J6-YIm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="M7e-J6-YIm">
                                         <rect key="frame" x="0.0" y="114" width="414" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M7e-J6-YIm" id="cgT-WU-2e2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="On a scale from 0–10*, how distressing is this thought?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ww-to-EZC" userLabel="Scale Question">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="On a scale from 0–10, how distressing is this thought?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ww-to-EZC" userLabel="Scale Question">
                                                     <rect key="frame" x="20" y="11" width="374" height="40.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

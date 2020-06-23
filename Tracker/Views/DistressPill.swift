@@ -17,7 +17,7 @@ class DistressPill: UIView {
         get {
             return label.font.pointSize
         } set {
-            label.font = UIFont.systemFont(ofSize: newValue)
+            label.font = UIFont.boldSystemFont(ofSize: newValue)
         }
     }
     

@@ -45,7 +45,7 @@ class DistressSlider: UISlider {
     private func setupCurrentValueLabel() {
         currentValueLabel.textAlignment = .center
         currentValueLabel.backgroundColor = .clear
-        currentValueLabel.textColor = UIColor.black // Thumb is white in both dark/light mode
+        currentValueLabel.textColor = .black // Thumb is white in both dark/light mode
         addSubview(currentValueLabel)
     }
     

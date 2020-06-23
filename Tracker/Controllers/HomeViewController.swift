@@ -39,8 +39,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         SegueManager.shared.present(.addNewThought, controller: self)
     }
     
+    private func deleteThought(_ thought: Thought?) {
+        PersistenceManager.shared.delete(thought)
+    }
     
-    // MARK: - UITableViewDataSource
+    
+    // MARK: - UITableViewDataSource/Delegate
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return resultsController?.sections?.count ?? 0
@@ -79,7 +83,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch editingStyle {
         case .delete:
             let thought = resultsController?.object(at: indexPath)
-            PersistenceManager.shared.delete(thought)
+            let alertMessage = "Are you sure you want to delete this thought? This action cannot be undone."
+            let alert = UIAlertController(title: "Delete thought", message: alertMessage, preferredStyle: .alert)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in self.deleteThought(thought) }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
         default:
             return
         }
@@ -92,9 +102,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         editButtonItem.isEnabled = !isEmpty
         tableView.setEditing(editing, animated: animated)
     }
-    
-    
-    // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -153,9 +160,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private let sectionHeaderDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMMM d"
-        formatter.calendar = Calendar.current
-        formatter.locale = Locale.current
-        formatter.timeZone = TimeZone.current
+        formatter.calendar = .current
+        formatter.locale = .current
+        formatter.timeZone = .current
         return formatter
     }()
     
