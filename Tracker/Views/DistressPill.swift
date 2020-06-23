@@ -47,10 +47,10 @@ class DistressPill: UIView {
         addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2 * Self.labelPadding).isActive = true
+        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2 * Self.labelPadding).isActive = true
+        label.topAnchor.constraint(equalTo: topAnchor, constant: Self.labelPadding).isActive = true
+        label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Self.labelPadding).isActive = true
         label.widthAnchor.constraint(equalTo: label.heightAnchor, multiplier: 2/1).isActive = true
         label.textAlignment = .center
         label.textColor = UIColor(named: "Distress Pill Label")
@@ -75,6 +75,8 @@ class DistressPill: UIView {
     
     
     // MARK: - Helpers
+    
+    static private let labelPadding: CGFloat = 5
     
     private func backgroundColour(distress: Int) -> UIColor {
         switch distress {
