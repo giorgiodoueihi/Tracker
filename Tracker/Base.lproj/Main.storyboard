@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LvY-fm-eY0">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LvY-fm-eY0">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,21 +35,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="66D-7P-WiA">
-                                <rect key="frame" x="40" y="389" width="334" height="118.5"/>
+                                <rect key="frame" x="40" y="384.66666666666669" width="334" height="126.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpP-Cu-UrJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="64.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="64.666666666666671"/>
                                         <string key="text">"Man is affected not by events but by the view he takes of them."
 Seneca</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xr-0Q-aq1" customClass="RoundedButton" customModule="Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="97.5" y="84.5" width="139" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xr-0Q-aq1" customClass="RoundedButton" customModule="Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="78" y="84.666666666666629" width="178" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
                                         <state key="normal" title="Add new thought">
-                                            <color key="titleColor" name="Default Text Colour"/>
+                                            <color key="titleColor" name="Text"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="addThought" destination="BYZ-38-t0r" eventType="touchUpInside" id="JlN-XD-g3p"/>
                                         </connections>
@@ -56,14 +68,60 @@ Seneca</string>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nRL-qh-MzS">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThoughtCell" id="6fP-ah-YEH" customClass="ThoughtCell" customModule="Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="52.333332061767578"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6fP-ah-YEH" id="ci7-T7-5Ha">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="52.333332061767578"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="h0h-ja-bhk">
+                                                    <rect key="frame" x="20" y="11.333333333333336" width="374" height="30"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh1-TG-GY1" customClass="DistressPill" customModule="Tracker" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="177" height="30"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="Z3i-bv-JlD"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontPointSize">
+                                                                    <real key="value" value="14"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm not good enough" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDP-4f-z9J">
+                                                            <rect key="frame" x="197" y="0.0" width="177" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="h0h-ja-bhk" secondAttribute="trailing" id="5xh-6i-Lg2"/>
+                                                <constraint firstItem="h0h-ja-bhk" firstAttribute="centerY" secondItem="ci7-T7-5Ha" secondAttribute="centerY" id="fk4-1v-J6a"/>
+                                                <constraint firstItem="h0h-ja-bhk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ci7-T7-5Ha" secondAttribute="topMargin" id="rk9-P9-9r5"/>
+                                                <constraint firstItem="h0h-ja-bhk" firstAttribute="leading" secondItem="ci7-T7-5Ha" secondAttribute="leadingMargin" id="uZ4-oA-oYq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="distressPill" destination="yh1-TG-GY1" id="4GI-qn-djC"/>
+                                            <outlet property="titleLabel" destination="fDP-4f-z9J" id="s3B-FG-khp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="0eG-EC-bRu"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="wfd-Xz-dNI"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="1Rj-hj-90W"/>
                             <constraint firstItem="nRL-qh-MzS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3jC-Bq-QkD"/>
@@ -74,9 +132,9 @@ Seneca</string>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nRL-qh-MzS" secondAttribute="trailing" id="m0E-wg-GnZ"/>
                             <constraint firstItem="nRL-qh-MzS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mXK-CK-mN2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tracker" id="nCu-tM-Aht">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Rcq-cw-euC"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wwX-bt-c2C">
                             <connections>
                                 <action selector="addThought" destination="BYZ-38-t0r" id="9da-VN-nRW"/>
@@ -84,6 +142,7 @@ Seneca</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="wwX-bt-c2C" id="Ffd-Rc-dOq"/>
                         <outlet property="emptyStateStackView" destination="66D-7P-WiA" id="Dx9-Iq-fU0"/>
                         <outlet property="tableView" destination="nRL-qh-MzS" id="19X-j9-mfH"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="addNewThought" id="uvB-6T-KYb"/>
@@ -91,7 +150,7 @@ Seneca</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-717" y="110"/>
+            <point key="canvasLocation" x="-717.39130434782612" y="109.82142857142857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uh2-py-XCh">
@@ -114,10 +173,10 @@ Seneca</string>
         <scene sceneID="1bg-1V-HaQ">
             <objects>
                 <tableViewController id="8Pn-Hw-yEn" customClass="AddThoughtViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="sdn-UX-2LL">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="sdn-UX-2LL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="NW2-jK-MVI">
                                 <cells>
@@ -128,7 +187,7 @@ Seneca</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Brief description of thought..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="id2-4p-tp6">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Brief description of thought" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="id2-4p-tp6">
                                                     <rect key="frame" x="20" y="11" width="374" height="38"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -150,33 +209,47 @@ Seneca</string>
                             </tableViewSection>
                             <tableViewSection id="diO-vU-GIF">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="M7e-J6-YIm">
-                                        <rect key="frame" x="0.0" y="114" width="414" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="M7e-J6-YIm">
+                                        <rect key="frame" x="0.0" y="114" width="414" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M7e-J6-YIm" id="cgT-WU-2e2">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M7e-J6-YIm" id="cgT-WU-2e2">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="qgt-mE-Wpd">
-                                                    <rect key="frame" x="20" y="11" width="374" height="86"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On a scale from 0–10, how distressing is this thought?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ww-to-EZC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulN-0O-ifP" customClass="DistressSlider" customModule="Tracker" customModuleProvider="target">
-                                                            <rect key="frame" x="-2" y="56" width="378" height="31"/>
-                                                        </slider>
-                                                    </subviews>
-                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="On a scale from 0–10*, how distressing is this thought?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ww-to-EZC" userLabel="Scale Question">
+                                                    <rect key="frame" x="20" y="11" width="374" height="40.666666666666664"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulN-0O-ifP" customClass="DistressSlider" customModule="Tracker" customModuleProvider="target">
+                                                    <rect key="frame" x="18" y="115.33333333333331" width="378" height="31"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="currentValuePointSize">
+                                                            <real key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6X-oK-FEG" userLabel="Scale Description">
+                                                    <rect key="frame" x="20" y="66.666666666666671" width="374" height="33.666666666666671"/>
+                                                    <string key="text">0 = No distress
+10 = Highly distressing</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="qgt-mE-Wpd" secondAttribute="trailing" id="O3I-bc-ZIM"/>
-                                                <constraint firstItem="qgt-mE-Wpd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cgT-WU-2e2" secondAttribute="topMargin" constant="10" id="jQ3-2k-HeS"/>
-                                                <constraint firstItem="qgt-mE-Wpd" firstAttribute="leading" secondItem="cgT-WU-2e2" secondAttribute="leadingMargin" id="r32-mG-V6R"/>
-                                                <constraint firstItem="qgt-mE-Wpd" firstAttribute="centerY" secondItem="cgT-WU-2e2" secondAttribute="centerY" id="xTb-g9-6iy"/>
+                                                <constraint firstItem="f6X-oK-FEG" firstAttribute="top" secondItem="2Ww-to-EZC" secondAttribute="bottom" constant="15" id="EAB-5n-JOV"/>
+                                                <constraint firstItem="f6X-oK-FEG" firstAttribute="trailing" secondItem="cgT-WU-2e2" secondAttribute="trailingMargin" id="Qa6-v7-wAB"/>
+                                                <constraint firstItem="ulN-0O-ifP" firstAttribute="top" secondItem="f6X-oK-FEG" secondAttribute="bottom" constant="15" id="Qk3-iK-LGh"/>
+                                                <constraint firstItem="ulN-0O-ifP" firstAttribute="trailing" secondItem="cgT-WU-2e2" secondAttribute="trailingMargin" id="TMC-dE-DGE"/>
+                                                <constraint firstItem="f6X-oK-FEG" firstAttribute="leading" secondItem="cgT-WU-2e2" secondAttribute="leadingMargin" id="Ujj-c7-3pQ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ulN-0O-ifP" secondAttribute="bottom" id="YWJ-4B-ROS"/>
+                                                <constraint firstItem="ulN-0O-ifP" firstAttribute="leading" secondItem="cgT-WU-2e2" secondAttribute="leadingMargin" id="ZgJ-gr-iZQ"/>
+                                                <constraint firstItem="2Ww-to-EZC" firstAttribute="top" secondItem="cgT-WU-2e2" secondAttribute="topMargin" id="tPQ-gq-lWT"/>
+                                                <constraint firstItem="2Ww-to-EZC" firstAttribute="leading" secondItem="cgT-WU-2e2" secondAttribute="leadingMargin" id="xFQ-rI-1tl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2Ww-to-EZC" secondAttribute="trailing" id="yGT-tq-mha"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -208,8 +281,11 @@ Seneca</string>
         </scene>
     </scenes>
     <resources>
-        <namedColor name="Default Text Colour">
+        <namedColor name="Text">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

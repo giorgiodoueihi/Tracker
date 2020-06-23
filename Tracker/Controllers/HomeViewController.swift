@@ -12,6 +12,7 @@ import CoreData
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var addButton: UIBarButtonItem!
     @IBOutlet private var emptyStateStackView: UIStackView!
     
     
@@ -19,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
      
         configureForEmptyState()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ThoughtCell")
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     
@@ -28,6 +29,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private func configureForEmptyState() {
         tableView.isHidden = isEmpty
         emptyStateStackView.isHidden = !isEmpty
+        setEditing(!isEmpty && isEditing, animated: false)
     }
     
     
@@ -58,9 +60,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ThoughtCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ThoughtCell") as! ThoughtCell
         let thought = resultsController?.object(at: indexPath)
-        cell.textLabel?.text = thought?.contents
+        cell.titleLabel.text = thought?.contents
+        cell.distress = thought?.distress
         return cell
     }
     
@@ -80,6 +83,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         default:
             return
         }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        addButton.isEnabled = !editing
+        editButtonItem.isEnabled = !isEmpty
+        tableView.setEditing(editing, animated: animated)
     }
     
     
@@ -149,7 +160,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }()
     
     private lazy var resultsController: NSFetchedResultsController<Thought>? = {
-        let descriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
+        let descriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
         let controller = PersistenceManager.shared.fetchedResultsController(type: Thought.self, sectionedBy: "isoTimestamp", sortedBy: descriptors)
         controller?.delegate = self
         try? controller?.performFetch()

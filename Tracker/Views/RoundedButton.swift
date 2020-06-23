@@ -8,12 +8,30 @@
 
 import UIKit
 
+@IBDesignable
 class RoundedButton: UIButton {
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        } set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        } set {
+            layer.borderWidth = newValue
+        }
+    }
+    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        setupRoundedBorder()
         setupContentInsets()
         configureRoundedBorderColour()
     }
@@ -33,17 +51,22 @@ class RoundedButton: UIButton {
         contentEdgeInsets = .init(top: 10, left: 20, bottom: 10, right: 20)
     }
     
-    private func setupRoundedBorder() {
-        layer.cornerRadius = 5
-        layer.borderWidth = 1
-        
-    }
-    
     
     // MARK: - Configuring
     
     private func configureRoundedBorderColour() {
         layer.borderColor = titleLabel?.textColor.cgColor
+    }
+    
+    
+    // MARK: - IBDesignable
+    
+    override init(frame: CGRect) {
+        #if TARGET_INTERFACE_BUILDER
+            super.init(frame: frame)
+        #else
+            fatalError("RoundedButton does not support `init(frame:)`. Please initialise from Interface Builder.")
+        #endif
     }
     
 }

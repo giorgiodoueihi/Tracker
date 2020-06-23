@@ -18,6 +18,8 @@
 		4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B726248A1A1A00CD1C09 /* Thought.swift */; };
 		4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4473B20E249EED3800AC7AE5 /* RoundedButton.swift */; };
 		449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF0249EF7CE0052B59F /* DistressSlider.swift */; };
+		449EDEF3249EFC640052B59F /* DistressPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF2249EFC640052B59F /* DistressPill.swift */; };
+		449EDEF5249EFE950052B59F /* ThoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF4249EFE950052B59F /* ThoughtCell.swift */; };
 		44CAB0F0249EDDE40070BB4D /* SegueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CAB0EF249EDDE40070BB4D /* SegueManager.swift */; };
 		44DD2F47248A20C700B514F9 /* AddThoughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +39,8 @@
 		4415B726248A1A1A00CD1C09 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		4473B20E249EED3800AC7AE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		449EDEF0249EF7CE0052B59F /* DistressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSlider.swift; sourceTree = "<group>"; };
+		449EDEF2249EFC640052B59F /* DistressPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressPill.swift; sourceTree = "<group>"; };
+		449EDEF4249EFE950052B59F /* ThoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCell.swift; sourceTree = "<group>"; };
 		44CAB0EF249EDDE40070BB4D /* SegueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueManager.swift; sourceTree = "<group>"; };
 		44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +94,8 @@
 			children = (
 				4473B20E249EED3800AC7AE5 /* RoundedButton.swift */,
 				449EDEF0249EF7CE0052B59F /* DistressSlider.swift */,
+				449EDEF2249EFC640052B59F /* DistressPill.swift */,
+				449EDEF4249EFE950052B59F /* ThoughtCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,7 +200,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4415B717248A153600CD1C09 /* Tracker.xcdatamodeld in Sources */,
+				449EDEF3249EFC640052B59F /* DistressPill.swift in Sources */,
 				4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */,
+				449EDEF5249EFE950052B59F /* ThoughtCell.swift in Sources */,
 				4415B711248A153600CD1C09 /* HomeViewController.swift in Sources */,
 				4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */,
 				4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */,
