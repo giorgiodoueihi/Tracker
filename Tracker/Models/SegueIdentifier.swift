@@ -32,7 +32,9 @@ extension UIViewController {
 
 extension UIStoryboardSegue {
 
-    /// Helper variable that returns a `SegueIdentifier` object rather than a `String`
+    /// Helper variable that returns `identifier` as a `SegueIdentifier`
+    ///
+    /// This prevents working with `String` types, which is never safe.
 
     var segueIdentifier: SegueIdentifier? {
         guard let identifier = identifier else {

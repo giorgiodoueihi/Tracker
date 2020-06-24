@@ -17,6 +17,11 @@ class Thought: NSManagedObject {
     @NSManaged var contents: String
     @NSManaged var distress: Int
     
+    /// Initialise a new object with its contents and distress value
+    ///
+    /// - Parameters:
+    ///     - contents: The thought contents
+    ///     - distress: The self-reported level of distress (0 to 1, in 0.1 increments)
     
     convenience init(contents: String, distress: Float) {
         self.init(entity: Thought.entity(), insertInto: PersistenceManager.shared.primaryContext)
