@@ -1,5 +1,5 @@
 //
-//  AddThoughtViewController.swift
+//  ThoughtInputViewController.swift
 //  Tracker
 //
 //  Created by Giorgio Doueihi on 5/6/20.
@@ -8,23 +8,24 @@
 
 import UIKit
 
-class AddThoughtViewController: UITableViewController, UITextFieldDelegate {
+class ThoughtInputViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet private var thoughtTextField: UITextField!
     @IBOutlet private var distressSlider: UISlider!
     @IBOutlet private var doneButton: UIBarButtonItem!
+
+    /// The thought that is currently being edited
+    ///
+    /// If this variable is `nil`, then we are creating a new `Thought`.
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var editingThought: Thought?
+
         
-        configureForThoughtTextField()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        thoughtTextField.becomeFirstResponder()
+        configureForEditingThought()
+        configureForThoughtTextField()
     }
     
     
@@ -32,8 +33,21 @@ class AddThoughtViewController: UITableViewController, UITextFieldDelegate {
     
     private func configureForThoughtTextField() {
         doneButton.isEnabled = thoughtTextField.text?.isEmpty == false
-        
     }
+    
+    private func configureForEditingThought() {
+        switch editingThought {
+        case .none:
+            navigationItem.title = "Add new thought"
+            thoughtTextField.becomeFirstResponder()
+        case .some(let thought):
+            navigationItem.title = "Edit thought"
+            thoughtTextField.text = thought.contents
+            let value = Float(thought.distress) / 10.0
+            distressSlider.setValue(value, animated: false)
+        }
+    }
+    
     
     // MARK: - Actions
     
@@ -46,8 +60,16 @@ class AddThoughtViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction private func done() {
-        guard let thought = thoughtTextField.text else { return } // Should never be called, since we check for `.isEmpty`
-        _ = Thought(contents: thought, distress: distressSlider.value)
+        guard let textFieldContents = thoughtTextField.text else { return } // Should never be called, since we check for `.isEmpty`
+        
+        switch editingThought {
+        case .none:
+            _ = Thought(contents: textFieldContents, distress: distressSlider.value)
+        case .some(let thought):
+            thought.contents = textFieldContents
+            thought.distress = Int(distressSlider.value * 10)
+        }
+        
         PersistenceManager.shared.saveIfNecessary()
         dismiss(animated: true, completion: nil)
     }

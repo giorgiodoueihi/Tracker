@@ -68,11 +68,11 @@ Seneca</string>
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThoughtCell" id="6fP-ah-YEH" customClass="ThoughtCell" customModule="Tracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThoughtCell" id="6fP-ah-YEH" customClass="ThoughtCell" customModule="Tracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6fP-ah-YEH" id="ci7-T7-5Ha">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh1-TG-GY1" customClass="DistressPill" customModule="Tracker" customModuleProvider="target">
@@ -85,7 +85,7 @@ Seneca</string>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="I'm not good enough" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDP-4f-z9J">
-                                                    <rect key="frame" x="83" y="11" width="319" height="24"/>
+                                                    <rect key="frame" x="83" y="11" width="300" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -140,6 +140,7 @@ Seneca</string>
                         <outlet property="emptyStateStackView" destination="66D-7P-WiA" id="Dx9-Iq-fU0"/>
                         <outlet property="tableView" destination="nRL-qh-MzS" id="19X-j9-mfH"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="addNewThought" id="uvB-6T-KYb"/>
+                        <segue destination="fA7-k1-SIB" kind="show" identifier="editThought" id="oDE-o7-GdM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,7 +167,7 @@ Seneca</string>
         <!--Add new thought-->
         <scene sceneID="1bg-1V-HaQ">
             <objects>
-                <tableViewController id="8Pn-Hw-yEn" customClass="AddThoughtViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8Pn-Hw-yEn" customClass="ThoughtInputViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="sdn-UX-2LL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -274,6 +275,9 @@ Seneca</string>
             <point key="canvasLocation" x="79.710144927536234" y="-605.35714285714278"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="oDE-o7-GdM"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <namedColor name="Text">

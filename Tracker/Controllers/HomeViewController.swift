@@ -23,6 +23,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.segueIdentifier == .editThought, let selectedIndexPath = tableView.indexPathForSelectedRow {
+            let navigationController = segue.destination as? UINavigationController
+            let thoughtInputViewController = navigationController?.topViewController as? ThoughtInputViewController
+            thoughtInputViewController?.editingThought = resultsController?.object(at: selectedIndexPath)
+        }
+    }
+    
     
     // MARK: - Configuring
     
@@ -36,10 +46,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Actions
     
     @IBAction private func addThought() {
-        SegueManager.shared.present(.addNewThought, controller: self)
+        performViewControllerSegue(identifier: .addNewThought)
     }
     
-    private func deleteThought(_ thought: Thought?) {
+    private func edit(_ thought: Thought, completionHandler: @escaping () -> Void) {
+        performViewControllerSegue(identifier: .editThought)
+        completionHandler()
+    }
+    
+    private func delete(_ thought: Thought?) {
         PersistenceManager.shared.delete(thought)
     }
     
@@ -85,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let thought = resultsController?.object(at: indexPath)
             let alertMessage = "Are you sure you want to delete this thought? This action cannot be undone."
             let alert = UIAlertController(title: "Delete thought", message: alertMessage, preferredStyle: .alert)
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in self.deleteThought(thought) }
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in self.delete(thought) }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alert.addAction(deleteAction)
             alert.addAction(cancelAction)
@@ -104,7 +119,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if let selectedThought = resultsController?.object(at: indexPath) {
+            edit(selectedThought) {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
     }
     
     

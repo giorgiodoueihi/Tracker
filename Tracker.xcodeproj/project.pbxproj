@@ -20,8 +20,8 @@
 		449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF0249EF7CE0052B59F /* DistressSlider.swift */; };
 		449EDEF3249EFC640052B59F /* DistressPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF2249EFC640052B59F /* DistressPill.swift */; };
 		449EDEF5249EFE950052B59F /* ThoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF4249EFE950052B59F /* ThoughtCell.swift */; };
-		44CAB0F0249EDDE40070BB4D /* SegueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CAB0EF249EDDE40070BB4D /* SegueManager.swift */; };
-		44DD2F47248A20C700B514F9 /* AddThoughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */; };
+		44CAB0F0249EDDE40070BB4D /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CAB0EF249EDDE40070BB4D /* SegueIdentifier.swift */; };
+		44DD2F47248A20C700B514F9 /* ThoughtInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DD2F46248A20C700B514F9 /* ThoughtInputViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +41,8 @@
 		449EDEF0249EF7CE0052B59F /* DistressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSlider.swift; sourceTree = "<group>"; };
 		449EDEF2249EFC640052B59F /* DistressPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressPill.swift; sourceTree = "<group>"; };
 		449EDEF4249EFE950052B59F /* ThoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCell.swift; sourceTree = "<group>"; };
-		44CAB0EF249EDDE40070BB4D /* SegueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueManager.swift; sourceTree = "<group>"; };
-		44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThoughtViewController.swift; sourceTree = "<group>"; };
+		44CAB0EF249EDDE40070BB4D /* SegueIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueIdentifier.swift; sourceTree = "<group>"; };
+		44DD2F46248A20C700B514F9 /* ThoughtInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtInputViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				4415B726248A1A1A00CD1C09 /* Thought.swift */,
-				44CAB0EF249EDDE40070BB4D /* SegueManager.swift */,
+				44CAB0EF249EDDE40070BB4D /* SegueIdentifier.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -113,7 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				4415B710248A153600CD1C09 /* HomeViewController.swift */,
-				44DD2F46248A20C700B514F9 /* AddThoughtViewController.swift */,
+				44DD2F46248A20C700B514F9 /* ThoughtInputViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -208,8 +208,8 @@
 				4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */,
 				4415B70D248A153600CD1C09 /* AppDelegate.swift in Sources */,
 				4415B70F248A153600CD1C09 /* SceneDelegate.swift in Sources */,
-				44CAB0F0249EDDE40070BB4D /* SegueManager.swift in Sources */,
-				44DD2F47248A20C700B514F9 /* AddThoughtViewController.swift in Sources */,
+				44CAB0F0249EDDE40070BB4D /* SegueIdentifier.swift in Sources */,
+				44DD2F47248A20C700B514F9 /* ThoughtInputViewController.swift in Sources */,
 				449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
