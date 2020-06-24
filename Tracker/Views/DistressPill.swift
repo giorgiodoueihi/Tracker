@@ -101,6 +101,7 @@ class DistressPill: UIView {
             setupLabel()
             configureRoundedCorners()
             configureForDistress()
+            label.textColor = .white
         #endif
     }
     
