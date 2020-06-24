@@ -69,23 +69,27 @@ Seneca</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThoughtCell" id="6fP-ah-YEH" customClass="ThoughtCell" customModule="Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="46"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="42.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6fP-ah-YEH" id="ci7-T7-5Ha">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="46"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="42.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh1-TG-GY1" customClass="DistressPill" customModule="Tracker" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="11" width="48" height="24"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh1-TG-GY1" customClass="DistressView" customModule="Tracker" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="11" width="20" height="20"/>
                                                     <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="yh1-TG-GY1" secondAttribute="height" multiplier="1:1" id="VCG-1v-nEP"/>
+                                                        <constraint firstAttribute="width" constant="20" id="YFL-Iq-nfo"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontPointSize">
-                                                            <real key="value" value="12"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="I'm not good enough" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDP-4f-z9J">
-                                                    <rect key="frame" x="83" y="11" width="300" height="24"/>
+                                                    <rect key="frame" x="55" y="11" width="313" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -93,17 +97,17 @@ Seneca</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="yh1-TG-GY1" firstAttribute="centerY" secondItem="ci7-T7-5Ha" secondAttribute="centerY" priority="250" id="6ib-ax-CFz"/>
-                                                <constraint firstItem="yh1-TG-GY1" firstAttribute="top" secondItem="ci7-T7-5Ha" secondAttribute="topMargin" id="AAb-Pn-roF"/>
                                                 <constraint firstItem="fDP-4f-z9J" firstAttribute="leading" secondItem="yh1-TG-GY1" secondAttribute="trailing" constant="15" id="IpL-RI-Y8j"/>
-                                                <constraint firstItem="fDP-4f-z9J" firstAttribute="trailingMargin" secondItem="ci7-T7-5Ha" secondAttribute="trailingMargin" id="Qz6-uW-dCb"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fDP-4f-z9J" secondAttribute="trailingMargin" constant="15" id="Qz6-uW-dCb"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yh1-TG-GY1" secondAttribute="bottom" id="fSN-DY-58z"/>
+                                                <constraint firstItem="yh1-TG-GY1" firstAttribute="top" secondItem="ci7-T7-5Ha" secondAttribute="topMargin" id="jKP-6f-6w0"/>
                                                 <constraint firstItem="yh1-TG-GY1" firstAttribute="leading" secondItem="ci7-T7-5Ha" secondAttribute="leadingMargin" id="jOt-GG-7P4"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fDP-4f-z9J" secondAttribute="bottom" id="pG6-YH-t8P"/>
                                                 <constraint firstItem="fDP-4f-z9J" firstAttribute="top" secondItem="ci7-T7-5Ha" secondAttribute="topMargin" id="ubc-mZ-aPM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="distressPill" destination="yh1-TG-GY1" id="4GI-qn-djC"/>
+                                            <outlet property="distressView" destination="yh1-TG-GY1" id="JJN-TX-6v0"/>
                                             <outlet property="titleLabel" destination="fDP-4f-z9J" id="s3B-FG-khp"/>
                                         </connections>
                                     </tableViewCell>

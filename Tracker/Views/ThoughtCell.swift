@@ -11,11 +11,11 @@ import UIKit
 class ThoughtCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet private var distressPill: DistressPill!
+    @IBOutlet private var distressView: DistressView!
     
     var distress: Int? {
         didSet {
-            distressPill.distress = distress
+            distressView.distress = distress
         }
     }
     

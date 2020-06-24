@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// Extension of `DistressView` that displays the reported distress in a label
+
 @IBDesignable
-class DistressPill: UIView {
+class DistressPill: DistressView {
     
     private let label = UILabel()
     
@@ -21,23 +23,11 @@ class DistressPill: UIView {
         }
     }
     
-    var distress: Int? {
-        didSet {
-            configureForDistress()
-        }
-    }
-    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
         setupLabel()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        configureRoundedCorners()
     }
     
     
@@ -51,7 +41,10 @@ class DistressPill: UIView {
         label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2 * Self.labelPadding).isActive = true
         label.topAnchor.constraint(equalTo: topAnchor, constant: Self.labelPadding).isActive = true
         label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Self.labelPadding).isActive = true
-        label.widthAnchor.constraint(equalTo: label.heightAnchor, multiplier: 2/1).isActive = true
+        setContentHuggingPriority(.required, for: .vertical)
+        setContentCompressionResistancePriority(.required, for: .vertical)
+        label.setContentHuggingPriority(.required, for: .vertical)
+        label.setContentCompressionResistancePriority(.required, for: .vertical)        
         label.textAlignment = .center
         label.textColor = UIColor(named: "Distress Pill Label")
     }
@@ -59,35 +52,16 @@ class DistressPill: UIView {
     
     // MARK: - Configuring
     
-    private func configureRoundedCorners() {
-        layer.cornerRadius = 6
-    }
-    
-    private func configureForDistress() {
-        guard let distress = distress else {
-            backgroundColor = nil
-            return label.text = nil
-        }
-
-        backgroundColor = backgroundColour(distress: distress)
-        label.text = "\(distress.description)/10"
+    override func configureForCornerRadius() {
+        super.configureForCornerRadius()
+        
+        label.text = (distress?.description ?? "") + "/10"
     }
     
     
     // MARK: - Helpers
     
     static private let labelPadding: CGFloat = 5
-    
-    private func backgroundColour(distress: Int) -> UIColor {
-        switch distress {
-        case 0..<4:
-            return .systemGray
-        case 4..<7:
-            return .systemOrange
-        default:
-            return .systemRed
-        }
-    }
     
     
     // MARK: - IBDesignable
@@ -98,9 +72,8 @@ class DistressPill: UIView {
         #else
             super.init(frame: frame)
             distress = 5
+            cornerRadius = 6
             setupLabel()
-            configureRoundedCorners()
-            configureForDistress()
             label.textColor = .white
         #endif
     }

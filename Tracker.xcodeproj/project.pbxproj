@@ -17,6 +17,7 @@
 		4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B724248A15E500CD1C09 /* PersistenceManager.swift */; };
 		4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B726248A1A1A00CD1C09 /* Thought.swift */; };
 		4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4473B20E249EED3800AC7AE5 /* RoundedButton.swift */; };
+		4488003224A34E4200798BD1 /* DistressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488003124A34E4200798BD1 /* DistressView.swift */; };
 		449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF0249EF7CE0052B59F /* DistressSlider.swift */; };
 		449EDEF3249EFC640052B59F /* DistressPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF2249EFC640052B59F /* DistressPill.swift */; };
 		449EDEF5249EFE950052B59F /* ThoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF4249EFE950052B59F /* ThoughtCell.swift */; };
@@ -38,6 +39,7 @@
 		4415B724248A15E500CD1C09 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		4415B726248A1A1A00CD1C09 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		4473B20E249EED3800AC7AE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		4488003124A34E4200798BD1 /* DistressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressView.swift; sourceTree = "<group>"; };
 		449EDEF0249EF7CE0052B59F /* DistressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSlider.swift; sourceTree = "<group>"; };
 		449EDEF2249EFC640052B59F /* DistressPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressPill.swift; sourceTree = "<group>"; };
 		449EDEF4249EFE950052B59F /* ThoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCell.swift; sourceTree = "<group>"; };
@@ -92,9 +94,10 @@
 		4473B20D249EED2F00AC7AE5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4488003124A34E4200798BD1 /* DistressView.swift */,
+				449EDEF2249EFC640052B59F /* DistressPill.swift */,
 				4473B20E249EED3800AC7AE5 /* RoundedButton.swift */,
 				449EDEF0249EF7CE0052B59F /* DistressSlider.swift */,
-				449EDEF2249EFC640052B59F /* DistressPill.swift */,
 				449EDEF4249EFE950052B59F /* ThoughtCell.swift */,
 			);
 			path = Views;
@@ -203,6 +206,7 @@
 				449EDEF3249EFC640052B59F /* DistressPill.swift in Sources */,
 				4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */,
 				449EDEF5249EFE950052B59F /* ThoughtCell.swift in Sources */,
+				4488003224A34E4200798BD1 /* DistressView.swift in Sources */,
 				4415B711248A153600CD1C09 /* HomeViewController.swift in Sources */,
 				4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */,
 				4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */,
