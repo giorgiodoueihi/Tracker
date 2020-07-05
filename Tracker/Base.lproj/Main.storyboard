@@ -180,28 +180,39 @@ Seneca</string>
                         <sections>
                             <tableViewSection id="NW2-jK-MVI">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="JSr-gR-lsN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="JSr-gR-lsN">
                                         <rect key="frame" x="0.0" y="18" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JSr-gR-lsN" id="MeC-DP-0kE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Brief description of thought" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="id2-4p-tp6">
-                                                    <rect key="frame" x="20" y="11" width="374" height="38"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eAQ-Yi-Ecj">
+                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
-                                                        <action selector="textDidChange" destination="8Pn-Hw-yEn" eventType="editingChanged" id="Otf-Cd-LjP"/>
-                                                        <outlet property="delegate" destination="8Pn-Hw-yEn" id="XVm-Sv-o7l"/>
+                                                        <outlet property="delegate" destination="8Pn-Hw-yEn" id="gMo-aU-KVZ"/>
                                                     </connections>
-                                                </textField>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brief description of thought" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1e-Vi-RA7">
+                                                    <rect key="frame" x="24" y="11" width="370" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="id2-4p-tp6" firstAttribute="leading" secondItem="MeC-DP-0kE" secondAttribute="leadingMargin" id="517-Yc-snW"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="id2-4p-tp6" secondAttribute="bottom" id="J1C-2e-BRQ"/>
-                                                <constraint firstItem="id2-4p-tp6" firstAttribute="top" secondItem="MeC-DP-0kE" secondAttribute="topMargin" id="k0b-mU-rSN"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="id2-4p-tp6" secondAttribute="trailing" id="nYb-Du-WRw"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="G1e-Vi-RA7" secondAttribute="bottom" id="IMD-rk-P5O"/>
+                                                <constraint firstItem="eAQ-Yi-Ecj" firstAttribute="top" secondItem="MeC-DP-0kE" secondAttribute="topMargin" id="Lth-gv-paW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="G1e-Vi-RA7" secondAttribute="trailing" id="UcI-o1-BIW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="eAQ-Yi-Ecj" secondAttribute="trailing" id="bJQ-QB-6i3"/>
+                                                <constraint firstItem="G1e-Vi-RA7" firstAttribute="top" secondItem="MeC-DP-0kE" secondAttribute="topMargin" id="jat-1U-gbh"/>
+                                                <constraint firstItem="G1e-Vi-RA7" firstAttribute="leading" secondItem="MeC-DP-0kE" secondAttribute="leadingMargin" constant="4" id="oMD-7e-pLh"/>
+                                                <constraint firstItem="eAQ-Yi-Ecj" firstAttribute="leading" secondItem="MeC-DP-0kE" secondAttribute="leadingMargin" id="q46-R3-g2I"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="eAQ-Yi-Ecj" secondAttribute="bottom" id="tBX-Gu-ZCL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -272,7 +283,8 @@ Seneca</string>
                     <connections>
                         <outlet property="distressSlider" destination="ulN-0O-ifP" id="Pan-CW-jE7"/>
                         <outlet property="doneButton" destination="e5k-KR-y4Q" id="eqn-jg-hcx"/>
-                        <outlet property="thoughtTextField" destination="id2-4p-tp6" id="W1a-wG-O3N"/>
+                        <outlet property="placeholderLabel" destination="G1e-Vi-RA7" id="ESE-Eg-Itb"/>
+                        <outlet property="thoughtTextView" destination="eAQ-Yi-Ecj" id="GEe-1z-mjT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzx-KD-UFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

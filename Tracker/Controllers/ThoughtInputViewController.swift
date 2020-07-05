@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ThoughtInputViewController: UITableViewController, UITextFieldDelegate {
+class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     
-    @IBOutlet private var thoughtTextField: UITextField!
+    @IBOutlet private var thoughtTextView: UITextView!
+    @IBOutlet private var placeholderLabel: UILabel!
     @IBOutlet private var distressSlider: UISlider!
     @IBOutlet private var doneButton: UIBarButtonItem!
 
@@ -32,17 +33,19 @@ class ThoughtInputViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Configuring
     
     private func configureForThoughtTextField() {
-        doneButton.isEnabled = thoughtTextField.text?.isEmpty == false
+        let hasText = thoughtTextView.text?.isEmpty == false
+        placeholderLabel.isHidden = hasText
+        doneButton.isEnabled = hasText
     }
     
     private func configureForEditingThought() {
         switch editingThought {
         case .none:
             navigationItem.title = "Add new thought"
-            thoughtTextField.becomeFirstResponder()
+            thoughtTextView.becomeFirstResponder()
         case .some(let thought):
             navigationItem.title = "Edit thought"
-            thoughtTextField.text = thought.contents
+            thoughtTextView.text = thought.contents
             let value = Float(thought.distress) / 10.0
             distressSlider.setValue(value, animated: false)
         }
@@ -51,16 +54,14 @@ class ThoughtInputViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Actions
     
-    @IBAction private func textDidChange() {
-        configureForThoughtTextField()
-    }
-    
     @IBAction private func cancel() {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func done() {
-        guard let textFieldContents = thoughtTextField.text else { return } // Should never be called, since we check for `.isEmpty`
+        guard let textFieldContents = thoughtTextView.text else { /// Should never be called, since we check for `.isEmpty`
+            return
+        }
         
         switch editingThought {
         case .none:
@@ -78,26 +79,20 @@ class ThoughtInputViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - UIScrollViewDelegate
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        guard scrollView == tableView else { return }
-        
-        thoughtTextField.resignFirstResponder()
-    }
-    
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        guard scrollView == tableView else { return }
-        
-        thoughtTextField.becomeFirstResponder()
-    }
-    
-    
-    // MARK: - UITextFieldDelegate
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.text?.isEmpty == false {
-            done()
+        guard scrollView == tableView else {
+            return
         }
-        
-        return true
+
+        thoughtTextView.resignFirstResponder()
+    }
+    
+    
+    // MARK: - UITextViewDelegate
+    
+    func textViewDidChange(_ textView: UITextView) {
+        tableView.beginUpdates() /// Resizes `thoughtTextView` cell
+        configureForThoughtTextField()
+        tableView.endUpdates()
     }
     
 }

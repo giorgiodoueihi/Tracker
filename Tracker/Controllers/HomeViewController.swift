@@ -85,7 +85,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let indexPath = IndexPath(row: 0, section: section) // If the section exists, then it must have at least one object
+        let indexPath = IndexPath(row: 0, section: section) /// If the section exists, then it must have at least one object
         guard let section = resultsController?.object(at: indexPath) else {
             return nil
         }
