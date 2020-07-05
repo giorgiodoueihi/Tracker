@@ -15,6 +15,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet private var addButton: UIBarButtonItem!
     @IBOutlet private var emptyStateStackView: UIStackView!
     
+    /// The currently selected index path for the table view
+    ///
+    /// Because `tableView(:didSelectRowAt:)` presents an alert sheet, we need to
+    /// store the selection so that we may call upon it later.
+    
+    private var selectedTableViewIndexPath: IndexPath? {
+        didSet {
+            if let newValue = selectedTableViewIndexPath {
+                tableView.deselectRow(at: newValue, animated: true)
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +39,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.segueIdentifier == .editThought, let selectedIndexPath = tableView.indexPathForSelectedRow {
+        if segue.segueIdentifier == .editThought, let selectedIndexPath = selectedTableViewIndexPath {
             let navigationController = segue.destination as? UINavigationController
             let thoughtInputViewController = navigationController?.topViewController as? ThoughtInputViewController
             thoughtInputViewController?.editingThought = resultsController?.object(at: selectedIndexPath)
@@ -49,9 +62,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         performViewControllerSegue(identifier: .addNewThought)
     }
     
-    private func edit(_ thought: Thought, completionHandler: @escaping () -> Void) {
-        performViewControllerSegue(identifier: .editThought)
-        completionHandler()
+    private var handleEditSelectedThought: (UIAlertAction) -> Void {
+        return { [weak self] _ in
+            self?.performViewControllerSegue(identifier: .editThought)
+        }
     }
     
     private func delete(_ thought: Thought?) {
@@ -119,11 +133,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedThought = resultsController?.object(at: indexPath) {
-            edit(selectedThought) {
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
-        }
+        selectedTableViewIndexPath = indexPath
+        let alertMessage = resultsController?.object(at: indexPath).contents
+        let alert = UIAlertController(title: alertMessage, message: nil, preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: "Edit", style: .default, handler: handleEditSelectedThought)
+        let categoriseAction = UIAlertAction(title: "Categorise", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(editAction)
+        alert.addAction(cancelAction)
+        alert.addAction(categoriseAction)
+        present(alert, animated: true, completion: nil)
     }
     
     
