@@ -11,8 +11,7 @@ import CoreData
 struct PersistenceManager {
     
     static let shared = PersistenceManager()
-    
-    
+        
     /// The primary `NSManagedObjectContext` for the app
     ///
     /// You shouldn't really need to communicate with this outside the `PersistenceManager` unless
@@ -43,6 +42,7 @@ struct PersistenceManager {
         guard let object = object else {
             return
         }
+        
         primaryContext.delete(object)
         saveIfNecessary()
     }

@@ -109,6 +109,7 @@ Seneca</string>
                                         <connections>
                                             <outlet property="distressView" destination="yh1-TG-GY1" id="JJN-TX-6v0"/>
                                             <outlet property="titleLabel" destination="fDP-4f-z9J" id="s3B-FG-khp"/>
+                                            <outlet property="titleLabelLeadingConstraint" destination="IpL-RI-Y8j" id="NzV-ga-99t"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

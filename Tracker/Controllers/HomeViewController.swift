@@ -89,6 +89,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guard let section = resultsController?.object(at: indexPath) else {
             return nil
         }
+        
         return sectionHeaderDateFormatter.string(from: section.timestamp)
     }
     
@@ -109,8 +110,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        switch editingStyle {
-        case .delete:
+        if editingStyle == .delete {
             let thought = resultsController?.object(at: indexPath)
             let alertMessage = "Are you sure you want to delete this thought? This action cannot be undone."
             let alert = UIAlertController(title: "Delete thought", message: alertMessage, preferredStyle: .alert)
@@ -119,8 +119,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             alert.addAction(deleteAction)
             alert.addAction(cancelAction)
             present(alert, animated: true, completion: nil)
-        default:
-            return
         }
     }
     
