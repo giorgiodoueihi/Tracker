@@ -16,6 +16,8 @@
 		4415B71C248A153700CD1C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4415B71A248A153700CD1C09 /* LaunchScreen.storyboard */; };
 		4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B724248A15E500CD1C09 /* PersistenceManager.swift */; };
 		4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B726248A1A1A00CD1C09 /* Thought.swift */; };
+		4415D88F2514C63900B130AF /* RestructuredThought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D88E2514C63900B130AF /* RestructuredThought.swift */; };
+		4415D8932514C8A900B130AF /* Dateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D8922514C8A900B130AF /* Dateable.swift */; };
 		4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4473B20E249EED3800AC7AE5 /* RoundedButton.swift */; };
 		4488003224A34E4200798BD1 /* DistressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488003124A34E4200798BD1 /* DistressView.swift */; };
 		449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF0249EF7CE0052B59F /* DistressSlider.swift */; };
@@ -38,6 +40,8 @@
 		4415B723248A154C00CD1C09 /* Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tracker.entitlements; sourceTree = "<group>"; };
 		4415B724248A15E500CD1C09 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		4415B726248A1A1A00CD1C09 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
+		4415D88E2514C63900B130AF /* RestructuredThought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructuredThought.swift; sourceTree = "<group>"; };
+		4415D8922514C8A900B130AF /* Dateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateable.swift; sourceTree = "<group>"; };
 		4473B20E249EED3800AC7AE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		4488003124A34E4200798BD1 /* DistressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressView.swift; sourceTree = "<group>"; };
 		449EDEF0249EF7CE0052B59F /* DistressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSlider.swift; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 				44DD2F44248A1EC500B514F9 /* Controllers */,
 				44DD2F43248A1EB000B514F9 /* Models */,
 				44DD2F45248A1FDD00B514F9 /* Managers & Delegates */,
+				4415D8952514C8B500B130AF /* Protocols */,
 				4415B723248A154C00CD1C09 /* Tracker.entitlements */,
 				4415B715248A153600CD1C09 /* Tracker.xcdatamodeld */,
 				4415B712248A153600CD1C09 /* Main.storyboard */,
@@ -89,6 +94,14 @@
 				4415B718248A153700CD1C09 /* Assets.xcassets */,
 			);
 			path = Tracker;
+			sourceTree = "<group>";
+		};
+		4415D8952514C8B500B130AF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4415D8922514C8A900B130AF /* Dateable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		4473B20D249EED2F00AC7AE5 /* Views */ = {
@@ -107,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				4415B726248A1A1A00CD1C09 /* Thought.swift */,
+				4415D88E2514C63900B130AF /* RestructuredThought.swift */,
 				44CAB0EF249EDDE40070BB4D /* SegueIdentifier.swift */,
 			);
 			path = Models;
@@ -158,7 +172,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Giorgio Doueihi";
 				TargetAttributes = {
 					4415B708248A153600CD1C09 = {
@@ -209,12 +223,14 @@
 				4488003224A34E4200798BD1 /* DistressView.swift in Sources */,
 				4415B711248A153600CD1C09 /* HomeViewController.swift in Sources */,
 				4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */,
+				4415D88F2514C63900B130AF /* RestructuredThought.swift in Sources */,
 				4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */,
 				4415B70D248A153600CD1C09 /* AppDelegate.swift in Sources */,
 				4415B70F248A153600CD1C09 /* SceneDelegate.swift in Sources */,
 				44CAB0F0249EDDE40070BB4D /* SegueIdentifier.swift in Sources */,
 				44DD2F47248A20C700B514F9 /* ThoughtInputViewController.swift in Sources */,
 				449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */,
+				4415D8932514C8A900B130AF /* Dateable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +282,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -326,6 +343,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

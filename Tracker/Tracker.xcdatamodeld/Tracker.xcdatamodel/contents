@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="RestructuredThought" representedClassName="RestructuredThought" syncable="YES">
+        <attribute name="adviceToFriend" optional="YES" attributeType="String"/>
+        <attribute name="evidenceAgainst" optional="YES" attributeType="String"/>
+        <attribute name="evidenceFor" optional="YES" attributeType="String"/>
+        <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isoTimestamp" optional="YES" attributeType="String"/>
+        <attribute name="perceivedHelpfulness" optional="YES" attributeType="String"/>
+        <attribute name="restructuredThought" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="thought" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thought" inverseName="restructuredThought" inverseEntity="Thought"/>
+    </entity>
     <entity name="Thought" representedClassName="Thought" syncable="YES">
         <attribute name="contents" optional="YES" attributeType="String"/>
-        <attribute name="distress" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="distress" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isoTimestamp" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="restructuredThought" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="RestructuredThought" inverseName="thought" inverseEntity="RestructuredThought"/>
     </entity>
     <elements>
-        <element name="Thought" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Thought" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="RestructuredThought" positionX="-54" positionY="-9" width="128" height="178"/>
     </elements>
 </model>
