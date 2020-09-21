@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nRL-qh-MzS">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThoughtCell" id="6fP-ah-YEH" customClass="ThoughtCell" customModule="Tracker" customModuleProvider="target">
@@ -127,7 +127,7 @@ Seneca</string>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="1Rj-hj-90W"/>
                             <constraint firstItem="nRL-qh-MzS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3jC-Bq-QkD"/>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MDy-b4-JUk"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nRL-qh-MzS" secondAttribute="bottom" id="RYd-Ya-XxK"/>
+                            <constraint firstAttribute="bottom" secondItem="nRL-qh-MzS" secondAttribute="bottom" id="RYd-Ya-XxK"/>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="SXn-9i-P30"/>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ejo-1d-9vy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nRL-qh-MzS" secondAttribute="trailing" id="m0E-wg-GnZ"/>
