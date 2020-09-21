@@ -34,10 +34,11 @@ class RestructuredThought: NSManagedObject, Dateable, Identifiable {
     @NSManaged var restructuredThought: String?
     
     
-    convenience init() {
+    convenience init(_ thought: Thought) {
         self.init(entity: RestructuredThought.entity(), insertInto: PersistenceManager.shared.primaryContext)
         
         self.identifier = UUID()
+        self.thought = thought
         self.timestamp = Date()
         self.isoTimestamp = convertToYearMonthDayString(date: timestamp)
     }

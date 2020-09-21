@@ -148,11 +148,44 @@ Seneca</string>
                         <outlet property="tableView" destination="nRL-qh-MzS" id="19X-j9-mfH"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="addNewThought" id="uvB-6T-KYb"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="editThought" id="oDE-o7-GdM"/>
+                        <segue destination="2ee-ti-hIv" kind="presentation" identifier="restructureThought" id="LZv-K8-1vT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-717.39130434782612" y="109.82142857142857"/>
+        </scene>
+        <!--Restructure Thought Navigation Controller-->
+        <scene sceneID="A5I-q5-lmC">
+            <objects>
+                <navigationController id="2ee-ti-hIv" customClass="RestructureThoughtNavigationController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qV2-9e-4xg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Y1a-0G-L3d" kind="relationship" relationship="rootViewController" id="Q6e-Bf-oSm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GYe-nn-OaY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-717" y="888"/>
+        </scene>
+        <!--Restructure thought-->
+        <scene sceneID="eQW-ki-6hH">
+            <objects>
+                <viewController id="Y1a-0G-L3d" customClass="RestructureThoughtViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LHS-Wc-ylu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="gWn-6B-GsD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Restructure thought" id="Axe-AQ-zdd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ll-GJ-4MR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="61" y="888"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uh2-py-XCh">
@@ -303,7 +336,7 @@ Seneca</string>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="oDE-o7-GdM"/>
+        <segue reference="uvB-6T-KYb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>

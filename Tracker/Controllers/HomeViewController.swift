@@ -39,10 +39,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.segueIdentifier == .editThought, let selectedIndexPath = selectedTableViewIndexPath {
+        let selectedThought = thought(at: selectedTableViewIndexPath)
+        switch segue.segueIdentifier {
+        case .editThought:
             let navigationController = segue.destination as? UINavigationController
             let thoughtInputViewController = navigationController?.topViewController as? ThoughtInputViewController
-            thoughtInputViewController?.editingThought = resultsController?.object(at: selectedIndexPath)
+            thoughtInputViewController?.editingThought = selectedThought
+        case .restructureThought:
+            let navigationController = segue.destination as? RestructureThoughtNavigationController
+            navigationController?.restructuredThought = RestructuredThought(selectedThought!) // Safe; can only get here by selecting a thought
+        default:
+            break
         }
     }
     
@@ -62,9 +69,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         performViewControllerSegue(identifier: .addNewThought)
     }
     
-    private var handleEditSelectedThought: (UIAlertAction) -> Void {
+    private func performSegueAfterAction(_ identifier: SegueIdentifier) -> (UIAlertAction) -> Void {
         return { [weak self] _ in
-            self?.performViewControllerSegue(identifier: .editThought)
+            self?.performViewControllerSegue(identifier: identifier)
         }
     }
     
@@ -86,7 +93,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let indexPath = IndexPath(row: 0, section: section) /// If the section exists, then it must have at least one object
-        guard let section = resultsController?.object(at: indexPath) else {
+        guard let section = thought(at: indexPath) else {
             return nil
         }
         
@@ -95,7 +102,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThoughtCell") as! ThoughtCell
-        let thought = resultsController?.object(at: indexPath)
+        let thought = self.thought(at: indexPath)
         cell.titleLabel.text = thought?.contents
         cell.distress = thought?.distress
         return cell
@@ -111,7 +118,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let thought = resultsController?.object(at: indexPath)
+            let thought = self.thought(at: indexPath)
             let alertMessage = "Are you sure you want to delete this thought? This action cannot be undone."
             let alert = UIAlertController(title: "Delete thought", message: alertMessage, preferredStyle: .alert)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in self.delete(thought) }
@@ -132,14 +139,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedTableViewIndexPath = indexPath
-        let alertMessage = resultsController?.object(at: indexPath).contents
+        let alertMessage = thought(at: indexPath)?.contents
         let alert = UIAlertController(title: alertMessage, message: nil, preferredStyle: .actionSheet)
-        let editAction = UIAlertAction(title: "Edit", style: .default, handler: handleEditSelectedThought)
-        let categoriseAction = UIAlertAction(title: "Categorise", style: .default, handler: nil)
+        let editAction = UIAlertAction(title: "Edit", style: .default, handler: performSegueAfterAction(.editThought))
+        let restructureAction = UIAlertAction(title: "Restructure", style: .default, handler: performSegueAfterAction(.restructureThought))
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(editAction)
         alert.addAction(cancelAction)
-        alert.addAction(categoriseAction)
+        alert.addAction(restructureAction)
         present(alert, animated: true, completion: nil)
     }
     
@@ -189,6 +196,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - Helpers
     
+    /// Returns the `Thought` in the `resultsController` at the given `IndexPath`, or `nil` if none exists
+    ///
+    /// - Parameters:
+    ///     - indexPath: The `IndexPath` of the desired thought
+    
+    private func thought(at indexPath: IndexPath?) -> Thought? {
+        guard let indexPath = indexPath else {
+            return nil
+        }
+        
+        return resultsController?.object(at: indexPath)
+    }
+    
+    /// Returns whether the `resultsController` is empty
     private var isEmpty: Bool {
         return resultsController?.sections?.isEmpty == true
     }
@@ -202,6 +223,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return formatter
     }()
     
+    /// The `NSFetchedResultsController` that acts as the data source for the controller's `UITableView`
     private lazy var resultsController: NSFetchedResultsController<Thought>? = {
         let descriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
         let controller = PersistenceManager.shared.fetchedResultsController(type: Thought.self, sectionedBy: "isoTimestamp", sortedBy: descriptors)

@@ -18,6 +18,9 @@
 		4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B726248A1A1A00CD1C09 /* Thought.swift */; };
 		4415D88F2514C63900B130AF /* RestructuredThought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D88E2514C63900B130AF /* RestructuredThought.swift */; };
 		4415D8932514C8A900B130AF /* Dateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D8922514C8A900B130AF /* Dateable.swift */; };
+		446536A425182A6A00B7495A /* RestructureThoughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */; };
+		446536A825182AC500B7495A /* RestructureThoughtNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446536A725182AC500B7495A /* RestructureThoughtNavigationController.swift */; };
+		446536AB25182B6600B7495A /* CognitiveChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446536AA25182B6600B7495A /* CognitiveChallenge.swift */; };
 		4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4473B20E249EED3800AC7AE5 /* RoundedButton.swift */; };
 		4488003224A34E4200798BD1 /* DistressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488003124A34E4200798BD1 /* DistressView.swift */; };
 		449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF0249EF7CE0052B59F /* DistressSlider.swift */; };
@@ -42,6 +45,9 @@
 		4415B726248A1A1A00CD1C09 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		4415D88E2514C63900B130AF /* RestructuredThought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructuredThought.swift; sourceTree = "<group>"; };
 		4415D8922514C8A900B130AF /* Dateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateable.swift; sourceTree = "<group>"; };
+		446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructureThoughtViewController.swift; sourceTree = "<group>"; };
+		446536A725182AC500B7495A /* RestructureThoughtNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructureThoughtNavigationController.swift; sourceTree = "<group>"; };
+		446536AA25182B6600B7495A /* CognitiveChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitiveChallenge.swift; sourceTree = "<group>"; };
 		4473B20E249EED3800AC7AE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		4488003124A34E4200798BD1 /* DistressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressView.swift; sourceTree = "<group>"; };
 		449EDEF0249EF7CE0052B59F /* DistressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSlider.swift; sourceTree = "<group>"; };
@@ -81,9 +87,9 @@
 		4415B70B248A153600CD1C09 /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				44DD2F43248A1EB000B514F9 /* Models */,
 				4473B20D249EED2F00AC7AE5 /* Views */,
 				44DD2F44248A1EC500B514F9 /* Controllers */,
-				44DD2F43248A1EB000B514F9 /* Models */,
 				44DD2F45248A1FDD00B514F9 /* Managers & Delegates */,
 				4415D8952514C8B500B130AF /* Protocols */,
 				4415B723248A154C00CD1C09 /* Tracker.entitlements */,
@@ -122,6 +128,7 @@
 				4415B726248A1A1A00CD1C09 /* Thought.swift */,
 				4415D88E2514C63900B130AF /* RestructuredThought.swift */,
 				44CAB0EF249EDDE40070BB4D /* SegueIdentifier.swift */,
+				446536AA25182B6600B7495A /* CognitiveChallenge.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -131,6 +138,8 @@
 			children = (
 				4415B710248A153600CD1C09 /* HomeViewController.swift */,
 				44DD2F46248A20C700B514F9 /* ThoughtInputViewController.swift */,
+				446536A725182AC500B7495A /* RestructureThoughtNavigationController.swift */,
+				446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -224,13 +233,16 @@
 				4415B711248A153600CD1C09 /* HomeViewController.swift in Sources */,
 				4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */,
 				4415D88F2514C63900B130AF /* RestructuredThought.swift in Sources */,
+				446536A825182AC500B7495A /* RestructureThoughtNavigationController.swift in Sources */,
 				4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */,
 				4415B70D248A153600CD1C09 /* AppDelegate.swift in Sources */,
 				4415B70F248A153600CD1C09 /* SceneDelegate.swift in Sources */,
+				446536A425182A6A00B7495A /* RestructureThoughtViewController.swift in Sources */,
 				44CAB0F0249EDDE40070BB4D /* SegueIdentifier.swift in Sources */,
 				44DD2F47248A20C700B514F9 /* ThoughtInputViewController.swift in Sources */,
 				449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */,
 				4415D8932514C8A900B130AF /* Dateable.swift in Sources */,
+				446536AB25182B6600B7495A /* CognitiveChallenge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
