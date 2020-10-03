@@ -23,6 +23,7 @@ class PlaceholderTextView: UITextView {
         }
     }
     
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
@@ -57,6 +58,9 @@ class PlaceholderTextView: UITextView {
         placeholderLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         placeholderLabel.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
     }
+    
+    
+    // MARK: - Actions
     
     private var handleTextDidChange: (Any?) -> Void {
         return { [unowned self] object in
