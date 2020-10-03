@@ -11,7 +11,6 @@ import UIKit
 class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     
     @IBOutlet private var thoughtTextView: UITextView!
-    @IBOutlet private var placeholderLabel: UILabel!
     @IBOutlet private var distressSlider: UISlider!
     @IBOutlet private var doneButton: UIBarButtonItem!
 
@@ -33,9 +32,7 @@ class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     // MARK: - Configuring
     
     private func configureForThoughtTextField() {
-        let hasText = thoughtTextView.text?.isEmpty == false
-        placeholderLabel.isHidden = hasText
-        doneButton.isEnabled = hasText
+        doneButton.isEnabled = thoughtTextView.text?.isEmpty == false
     }
     
     private func configureForEditingThought() {
