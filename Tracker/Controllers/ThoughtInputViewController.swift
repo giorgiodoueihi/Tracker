@@ -10,7 +10,7 @@ import UIKit
 
 class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     
-    @IBOutlet private var thoughtTextView: UITextView!
+    @IBOutlet private var thoughtTextView: PlaceholderTextView!
     @IBOutlet private var distressSlider: UISlider!
     @IBOutlet private var doneButton: UIBarButtonItem!
 

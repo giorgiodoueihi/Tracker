@@ -173,36 +173,65 @@ Seneca</string>
         <!--Restructure thought-->
         <scene sceneID="aYD-IS-zW7">
             <objects>
-                <tableViewController id="KYV-sU-fSP" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="BRQ-hX-Su3">
+                <tableViewController id="KYV-sU-fSP" customClass="RestructureThoughtViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="BRQ-hX-Su3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="lc6-XK-BMr">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="C3D-Mg-5N4">
-                                        <rect key="frame" x="20" y="18" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="C3D-Mg-5N4">
+                                        <rect key="frame" x="20" y="17.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C3D-Mg-5N4" id="0up-ER-ykY">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Slk-Cy-2dB" customClass="PlaceholderTextView" customModule="Tracker" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How helpful is the thought?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hv4-8M-HpF">
+                                                    <rect key="frame" x="20" y="16" width="334" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hv4-8M-HpF" secondAttribute="bottom" constant="5" id="SZn-X4-Jfy"/>
+                                                <constraint firstItem="hv4-8M-HpF" firstAttribute="top" secondItem="0up-ER-ykY" secondAttribute="topMargin" constant="5" id="jSi-zd-Ndh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hv4-8M-HpF" secondAttribute="trailing" id="mCa-cY-fTd"/>
+                                                <constraint firstItem="hv4-8M-HpF" firstAttribute="leading" secondItem="0up-ER-ykY" secondAttribute="leadingMargin" id="t8f-tc-xAh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="85l-ap-Klk">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="T7N-sr-e6j">
+                                        <rect key="frame" x="20" y="96" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T7N-sr-e6j" id="RT3-Bv-NMd">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0iu-O2-QsK" customClass="PlaceholderTextView" customModule="Tracker" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="Response"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="My response"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="KYV-sU-fSP" id="QX4-CO-Ckb"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Slk-Cy-2dB" secondAttribute="bottom" id="4mK-1s-oJM"/>
-                                                <constraint firstItem="Slk-Cy-2dB" firstAttribute="leading" secondItem="0up-ER-ykY" secondAttribute="leading" id="mjx-LR-RzA"/>
-                                                <constraint firstAttribute="trailing" secondItem="Slk-Cy-2dB" secondAttribute="trailing" id="spv-WH-mBB"/>
-                                                <constraint firstItem="Slk-Cy-2dB" firstAttribute="top" secondItem="0up-ER-ykY" secondAttribute="top" id="wUy-za-38e"/>
+                                                <constraint firstItem="0iu-O2-QsK" firstAttribute="leading" secondItem="RT3-Bv-NMd" secondAttribute="leadingMargin" id="OQl-Wz-Jpc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0iu-O2-QsK" secondAttribute="trailing" id="ieF-J7-z5x"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="0iu-O2-QsK" secondAttribute="bottom" id="qaI-e2-sZQ"/>
+                                                <constraint firstItem="0iu-O2-QsK" firstAttribute="top" secondItem="RT3-Bv-NMd" secondAttribute="topMargin" id="yZt-aX-z1m"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -214,7 +243,18 @@ Seneca</string>
                             <outlet property="delegate" destination="KYV-sU-fSP" id="AbA-rR-y9U"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Restructure thought" id="GYS-In-rdf"/>
+                    <navigationItem key="navigationItem" title="Restructure thought" id="GYS-In-rdf">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Ccj-XH-vzj">
+                            <connections>
+                                <segue destination="KYV-sU-fSP" kind="show" id="v3D-Ba-HK3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nextButton" destination="Ccj-XH-vzj" id="1HI-Hm-IP6"/>
+                        <outlet property="prompt" destination="hv4-8M-HpF" id="gIU-WQ-W0z"/>
+                        <outlet property="textView" destination="0iu-O2-QsK" id="9IS-o5-4ww"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afA-XD-enL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,14 +281,14 @@ Seneca</string>
         <scene sceneID="1bg-1V-HaQ">
             <objects>
                 <tableViewController id="8Pn-Hw-yEn" customClass="ThoughtInputViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="sdn-UX-2LL">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="sdn-UX-2LL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="NW2-jK-MVI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="JSr-gR-lsN">
-                                        <rect key="frame" x="20" y="18" width="374" height="60"/>
+                                        <rect key="frame" x="20" y="17.5" width="374" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JSr-gR-lsN" id="MeC-DP-0kE">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
@@ -281,7 +321,7 @@ Seneca</string>
                             <tableViewSection id="diO-vU-GIF">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="M7e-J6-YIm">
-                                        <rect key="frame" x="20" y="114" width="374" height="180"/>
+                                        <rect key="frame" x="20" y="112.5" width="374" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M7e-J6-YIm" id="cgT-WU-2e2">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="180"/>

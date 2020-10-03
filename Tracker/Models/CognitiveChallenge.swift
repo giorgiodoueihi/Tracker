@@ -33,16 +33,20 @@ enum CognitiveChallenge: CaseIterable {
         case .perceivedHelpfulness:
             return "What does the thought do for you? How does it make you feel? Is it helpful in any way, or is it just distressing?"
         case .restructuredThought:
-            return "How would you re-write this thought?"
+            return "How would you rewrite this thought?"
         }
     }
     
     var nextChallenge: CognitiveChallenge? {
-        guard let currentIndex = Self.allCases.firstIndex(of: self), currentIndex < Self.allCases.count else {
+        guard let currentIndex = Self.allCases.firstIndex(of: self), currentIndex < Self.allCases.count - 1 else {
             return nil
         }
         
         return Self.allCases[currentIndex + 1]
+    }
+    
+    var currentIndex: Int {
+        return Self.allCases.firstIndex(of: self) ?? 0
     }
     
 }

@@ -202,7 +202,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     ///     - indexPath: The `IndexPath` of the desired thought
     
     private func thought(at indexPath: IndexPath?) -> Thought? {
-        guard let indexPath = indexPath else {
+        guard let indexPath = indexPath, !isEmpty else {
             return nil
         }
         
