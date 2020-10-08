@@ -28,6 +28,9 @@
 		449EDEF5249EFE950052B59F /* ThoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF4249EFE950052B59F /* ThoughtCell.swift */; };
 		44AA1D342526F8E6009C9997 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA1D332526F8E6009C9997 /* PlaceholderTextView.swift */; };
 		44CAB0F0249EDDE40070BB4D /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CAB0EF249EDDE40070BB4D /* SegueIdentifier.swift */; };
+		44D37589252E9C5800C950ED /* ThoughtDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D37588252E9C5800C950ED /* ThoughtDetailViewController.swift */; };
+		44D3758C252E9DFF00C950ED /* RestructuredThoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D3758B252E9DFF00C950ED /* RestructuredThoughtCell.swift */; };
+		44D3758F252EA23600C950ED /* ThoughtCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D3758E252EA23600C950ED /* ThoughtCell.xib */; };
 		44DD2F47248A20C700B514F9 /* ThoughtInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DD2F46248A20C700B514F9 /* ThoughtInputViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,9 @@
 		449EDEF4249EFE950052B59F /* ThoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtCell.swift; sourceTree = "<group>"; };
 		44AA1D332526F8E6009C9997 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		44CAB0EF249EDDE40070BB4D /* SegueIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueIdentifier.swift; sourceTree = "<group>"; };
+		44D37588252E9C5800C950ED /* ThoughtDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDetailViewController.swift; sourceTree = "<group>"; };
+		44D3758B252E9DFF00C950ED /* RestructuredThoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructuredThoughtCell.swift; sourceTree = "<group>"; };
+		44D3758E252EA23600C950ED /* ThoughtCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtCell.xib; sourceTree = "<group>"; };
 		44DD2F46248A20C700B514F9 /* ThoughtInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtInputViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +126,8 @@
 				4473B20E249EED3800AC7AE5 /* RoundedButton.swift */,
 				449EDEF0249EF7CE0052B59F /* DistressSlider.swift */,
 				449EDEF4249EFE950052B59F /* ThoughtCell.swift */,
+				44D3758E252EA23600C950ED /* ThoughtCell.xib */,
+				44D3758B252E9DFF00C950ED /* RestructuredThoughtCell.swift */,
 				44AA1D332526F8E6009C9997 /* PlaceholderTextView.swift */,
 			);
 			path = Views;
@@ -140,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				4415B710248A153600CD1C09 /* HomeViewController.swift */,
+				44D37588252E9C5800C950ED /* ThoughtDetailViewController.swift */,
 				44DD2F46248A20C700B514F9 /* ThoughtInputViewController.swift */,
 				446536A725182AC500B7495A /* RestructureThoughtNavigationController.swift */,
 				446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */,
@@ -218,6 +227,7 @@
 				4415B71C248A153700CD1C09 /* LaunchScreen.storyboard in Resources */,
 				4415B719248A153700CD1C09 /* Assets.xcassets in Resources */,
 				4415B714248A153600CD1C09 /* Main.storyboard in Resources */,
+				44D3758F252EA23600C950ED /* ThoughtCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,11 +252,13 @@
 				4415B70F248A153600CD1C09 /* SceneDelegate.swift in Sources */,
 				446536A425182A6A00B7495A /* RestructureThoughtViewController.swift in Sources */,
 				44CAB0F0249EDDE40070BB4D /* SegueIdentifier.swift in Sources */,
+				44D3758C252E9DFF00C950ED /* RestructuredThoughtCell.swift in Sources */,
 				44DD2F47248A20C700B514F9 /* ThoughtInputViewController.swift in Sources */,
 				449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */,
 				4415D8932514C8A900B130AF /* Dateable.swift in Sources */,
 				446536AB25182B6600B7495A /* CognitiveChallenge.swift in Sources */,
 				44AA1D342526F8E6009C9997 /* PlaceholderTextView.swift in Sources */,
+				44D37589252E9C5800C950ED /* ThoughtDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

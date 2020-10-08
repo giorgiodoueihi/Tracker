@@ -33,6 +33,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
      
         configureForEmptyState()
+        tableView.register(UINib(nibName: "ThoughtCell", bundle: nil), forCellReuseIdentifier: "ThoughtCell")
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
@@ -47,7 +48,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             thoughtInputViewController?.editingThought = selectedThought
         case .restructureThought:
             let navigationController = segue.destination as? RestructureThoughtNavigationController
-            navigationController?.restructuredThought = RestructuredThought(selectedThought!) // Safe; can only get here by selecting a thought
+            navigationController?.restructuredThought = selectedThought?.restructuredThought ?? RestructuredThought(selectedThought!)
+        case .viewThoughtDetail:
+            let controller = segue.destination as? ThoughtDetailViewController
+            controller?.thought = selectedThought
+            controller?.restructuredThought = selectedThought?.restructuredThought
         default:
             break
         }
@@ -68,13 +73,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction private func addThought() {
         performViewControllerSegue(identifier: .addNewThought)
     }
-    
-    private func performSegueAfterAction(_ identifier: SegueIdentifier) -> (UIAlertAction) -> Void {
-        return { [weak self] _ in
-            self?.performViewControllerSegue(identifier: identifier)
-        }
-    }
-    
+        
     private func delete(_ thought: Thought?) {
         PersistenceManager.shared.delete(thought)
     }
@@ -105,6 +104,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let thought = self.thought(at: indexPath)
         cell.titleLabel.text = thought?.contents
         cell.distress = thought?.distress
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     
@@ -139,15 +139,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedTableViewIndexPath = indexPath
-        let alertMessage = thought(at: indexPath)?.contents
-        let alert = UIAlertController(title: alertMessage, message: nil, preferredStyle: .actionSheet)
-        let editAction = UIAlertAction(title: "Edit", style: .default, handler: performSegueAfterAction(.editThought))
-        let restructureAction = UIAlertAction(title: "Restructure", style: .default, handler: performSegueAfterAction(.restructureThought))
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(editAction)
-        alert.addAction(cancelAction)
-        alert.addAction(restructureAction)
-        present(alert, animated: true, completion: nil)
+        performViewControllerSegue(identifier: .viewThoughtDetail)
     }
     
     

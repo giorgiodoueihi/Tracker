@@ -31,7 +31,7 @@ class RestructuredThought: NSManagedObject, Dateable, Identifiable {
     @NSManaged var perceivedHelpfulness: String?
     
     /// The restructured version of the original thought
-    @NSManaged var restructuredThought: String?
+    @NSManaged var rewrittenThought: String?
     
     
     convenience init(_ thought: Thought) {
@@ -43,5 +43,41 @@ class RestructuredThought: NSManagedObject, Dateable, Identifiable {
         self.isoTimestamp = convertToYearMonthDayString(date: timestamp)
     }
 
-}
+    
+    // MARK: - Helpers
+    
+    func answer(to challenge: CognitiveChallenge?) -> String? {
+        switch challenge {
+        case .evidenceFor:
+            return evidenceFor
+        case .evidenceAgainst:
+            return evidenceAgainst
+        case .adviceToFriend:
+            return adviceToFriend
+        case .perceivedHelpfulness:
+            return perceivedHelpfulness
+        case .rewrittenThought:
+            return rewrittenThought
+        default:
+            return nil
+        }
+    }
+    
+    func record(answer: String?, to challenge: CognitiveChallenge?) {
+        switch challenge {
+        case .evidenceFor:
+            evidenceFor = answer
+        case .evidenceAgainst:
+            evidenceAgainst = answer
+        case .adviceToFriend:
+            adviceToFriend = answer
+        case .perceivedHelpfulness:
+            perceivedHelpfulness = answer
+        case .rewrittenThought:
+            rewrittenThought = answer
+        default:
+            break
+        }
+    }
 
+}

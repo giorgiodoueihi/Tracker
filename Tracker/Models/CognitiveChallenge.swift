@@ -18,8 +18,8 @@ enum CognitiveChallenge: CaseIterable {
     case adviceToFriend
     /// The perceived helpfulness of holding the thought to be true
     case perceivedHelpfulness
-    /// The restructured version of the original thought
-    case restructuredThought
+    /// The rewritten version of the original thought
+    case rewrittenThought
     
     /// The question to ask the person doing the cognitive challenging
     var question: String {
@@ -32,7 +32,7 @@ enum CognitiveChallenge: CaseIterable {
             return "What would you tell a friend (to help them) if they had the thought?"
         case .perceivedHelpfulness:
             return "What does the thought do for you? How does it make you feel? Is it helpful in any way, or is it just distressing?"
-        case .restructuredThought:
+        case .rewrittenThought:
             return "How would you rewrite this thought?"
         }
     }

@@ -35,53 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nRL-qh-MzS">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThoughtCell" id="6fP-ah-YEH" customClass="ThoughtCell" customModule="Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="55.5" width="374" height="42.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6fP-ah-YEH" id="ci7-T7-5Ha">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="42.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh1-TG-GY1" customClass="DistressView" customModule="Tracker" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="11" width="20" height="20"/>
-                                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="yh1-TG-GY1" secondAttribute="height" multiplier="1:1" id="VCG-1v-nEP"/>
-                                                        <constraint firstAttribute="width" constant="20" id="YFL-Iq-nfo"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="I'm not good enough" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDP-4f-z9J">
-                                                    <rect key="frame" x="55" y="11" width="273" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="yh1-TG-GY1" firstAttribute="centerY" secondItem="ci7-T7-5Ha" secondAttribute="centerY" priority="250" id="6ib-ax-CFz"/>
-                                                <constraint firstItem="fDP-4f-z9J" firstAttribute="leading" secondItem="yh1-TG-GY1" secondAttribute="trailing" constant="15" id="IpL-RI-Y8j"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="fDP-4f-z9J" secondAttribute="trailingMargin" constant="15" id="Qz6-uW-dCb"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yh1-TG-GY1" secondAttribute="bottom" id="fSN-DY-58z"/>
-                                                <constraint firstItem="yh1-TG-GY1" firstAttribute="top" secondItem="ci7-T7-5Ha" secondAttribute="topMargin" id="jKP-6f-6w0"/>
-                                                <constraint firstItem="yh1-TG-GY1" firstAttribute="leading" secondItem="ci7-T7-5Ha" secondAttribute="leadingMargin" id="jOt-GG-7P4"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="fDP-4f-z9J" secondAttribute="bottom" id="pG6-YH-t8P"/>
-                                                <constraint firstItem="fDP-4f-z9J" firstAttribute="top" secondItem="ci7-T7-5Ha" secondAttribute="topMargin" id="ubc-mZ-aPM"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="distressView" destination="yh1-TG-GY1" id="JJN-TX-6v0"/>
-                                            <outlet property="titleLabel" destination="fDP-4f-z9J" id="s3B-FG-khp"/>
-                                            <outlet property="titleLabelLeadingConstraint" destination="IpL-RI-Y8j" id="NzV-ga-99t"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="0eG-EC-bRu"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="wfd-Xz-dNI"/>
@@ -148,11 +102,70 @@ Seneca</string>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="addNewThought" id="uvB-6T-KYb"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="editThought" id="oDE-o7-GdM"/>
                         <segue destination="2ee-ti-hIv" kind="presentation" identifier="restructureThought" id="LZv-K8-1vT"/>
+                        <segue destination="qd9-b4-S4B" kind="show" identifier="viewThoughtDetail" id="jrV-Hu-AeF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-717.39130434782612" y="109.82142857142857"/>
+        </scene>
+        <!--Thought-->
+        <scene sceneID="m83-he-Sbh">
+            <objects>
+                <tableViewController id="qd9-b4-S4B" customClass="ThoughtDetailViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="R3w-Wb-8K3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Restructured Thought" id="ZbG-qY-Z9q" customClass="RestructuredThoughtCell" customModule="Tracker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="55.5" width="374" height="89"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZbG-qY-Z9q" id="b3m-GI-s6W">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="89"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Hdi-c9-E27">
+                                            <rect key="frame" x="20" y="11" width="334" height="67"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="What evidence do you have for the thought?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiI-fX-ywX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="41"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="It's really true" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M61-mC-cNt">
+                                                    <rect key="frame" x="0.0" y="46" width="334" height="21"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Hdi-c9-E27" firstAttribute="leading" secondItem="b3m-GI-s6W" secondAttribute="leadingMargin" id="0TH-17-lds"/>
+                                        <constraint firstAttribute="bottom" secondItem="Hdi-c9-E27" secondAttribute="bottomMargin" constant="11" id="0md-oE-OJp"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Hdi-c9-E27" secondAttribute="trailing" id="EHg-pP-tEY"/>
+                                        <constraint firstItem="Hdi-c9-E27" firstAttribute="top" secondItem="b3m-GI-s6W" secondAttribute="topMargin" id="vfh-Yw-k7C"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="answerLabel" destination="M61-mC-cNt" id="CLI-Wu-h7F"/>
+                                    <outlet property="questionLabel" destination="kiI-fX-ywX" id="BDV-gl-HBW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qd9-b4-S4B" id="Iv6-Yo-in5"/>
+                            <outlet property="delegate" destination="qd9-b4-S4B" id="iVQ-Df-w84"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Thought" largeTitleDisplayMode="never" id="ChL-0b-9J4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="av7-PA-Yob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="343" y="110"/>
         </scene>
         <!--Restructure Thought Navigation Controller-->
         <scene sceneID="A5I-q5-lmC">
@@ -246,7 +259,7 @@ Seneca</string>
                     <navigationItem key="navigationItem" title="Restructure thought" id="GYS-In-rdf">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Ccj-XH-vzj">
                             <connections>
-                                <segue destination="KYV-sU-fSP" kind="show" id="v3D-Ba-HK3"/>
+                                <segue destination="KYV-sU-fSP" kind="show" identifier="restructureThought" id="v3D-Ba-HK3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -258,7 +271,7 @@ Seneca</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afA-XD-enL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="129" y="888"/>
+            <point key="canvasLocation" x="393" y="888"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uh2-py-XCh">
@@ -388,7 +401,7 @@ Seneca</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzx-KD-UFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79.710144927536234" y="-605.35714285714278"/>
+            <point key="canvasLocation" x="343" y="-605"/>
         </scene>
     </scenes>
     <designables>
@@ -415,9 +428,6 @@ Seneca</string>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -16,28 +16,39 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
     
     var challenge: CognitiveChallenge? {
         didSet {
-            let currentIndex = challenge?.currentIndex ?? 0
-            navigationItem.title = "Question \(currentIndex + 1) of \(CognitiveChallenge.allCases.count)"
-            if currentIndex == 0 {
-                let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-                navigationItem.leftBarButtonItem = cancelButton
-            }
+            configureForChallenge()
         }
     }
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupBarButtonItems()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-                        
-        setupBarButtonItems()
+        
         configurePrompt()
+        configurePrefilledTextField()
+        configureNextButton()
         textView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        PersistenceManager.shared.saveIfNecessary()
         textView.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.segueIdentifier == .restructureThought {
+            restructuredThought?.record(answer: textView.text, to: challenge)
+        }
     }
     
     
@@ -52,14 +63,28 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
     
     // MARK: - Configuring
     
+    private func configureForChallenge() {
+        let currentIndex = challenge?.currentIndex ?? 0
+        navigationItem.title = "Question \(currentIndex + 1) of \(CognitiveChallenge.allCases.count)"
+        if currentIndex == 0 {
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+            navigationItem.leftBarButtonItem = cancelButton
+        }
+    }
+    
     private func configureNextButton() {
         nextButton.isEnabled = !textView.text.isEmpty
     }
     
     private func configurePrompt() {
-        prompt.text = [challenge?.question, restructuredThought?.thought.contents]
-            .compactMap({ $0 })
-            .joined(separator: "\n\n")
+        let question = challenge?.question ?? ""
+        let attributedString = NSMutableAttributedString(string: question + "\n\n")
+        attributedString.append(originalThoughtAsItalicisedString)
+        prompt.attributedText = attributedString
+    }
+    
+    private func configurePrefilledTextField() {
+        textView.text = restructuredThought?.answer(to: challenge)
     }
     
     
@@ -98,6 +123,16 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
     
     var isLastChallenge: Bool {
         return challenge?.nextChallenge == nil
+    }
+    
+    var originalThoughtAsItalicisedString: NSAttributedString {
+        let fontDescriptor = prompt.font.fontDescriptor
+        var fontTraits = fontDescriptor.symbolicTraits
+        fontTraits.update(with: .traitItalic)
+        let italicisedFont = UIFont(descriptor: fontDescriptor.withSymbolicTraits(fontTraits)!, size: prompt.font.pointSize)
+        let thoughtContents = "“\(restructuredThought?.thought.contents ?? "")”"
+        let attributes = [NSAttributedString.Key.font: italicisedFont]
+        return NSAttributedString(string: thoughtContents, attributes: attributes)
     }
     
 }

@@ -16,6 +16,7 @@ enum SegueIdentifier: String {
     case addNewThought
     case editThought
     case restructureThought
+    case viewThoughtDetail
 }
 
 extension UIViewController {
