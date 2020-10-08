@@ -8,17 +8,25 @@
 
 import UIKit
 
-class RestructureThoughtNavigationController: UINavigationController {
+class RestructureThoughtNavigationController: UINavigationController, UIAdaptivePresentationControllerDelegate {
     
     var restructuredThought: RestructuredThought?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        presentationController?.delegate = self
+        
         if let restructureThoughtViewController = topViewController as? RestructureThoughtViewController {
             restructureThoughtViewController.challenge = CognitiveChallenge.allCases.first
         }
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        PersistenceManager.shared.saveIfNecessary()
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
@@ -33,6 +41,13 @@ class RestructureThoughtNavigationController: UINavigationController {
         restructureThoughtViewController.challenge = nextChallenge
         super.pushViewController(restructureThoughtViewController, animated: animated)
         
+    }
+    
+    
+    // MARK: - UIAdaptivePresentationControllerDelegate
+    
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+        PersistenceManager.shared.saveIfNecessary()
     }
 
 }
