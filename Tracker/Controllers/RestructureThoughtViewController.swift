@@ -30,6 +30,7 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
         configurePrompt()
         configurePrefilledTextField()
         configureNextButton()
+        navigationController?.presentationController?.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +62,6 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
         navigationItem.title = "Question \(currentIndex + 1) of \(CognitiveChallenge.allCases.count)"
         if challenge != CognitiveChallenge.allCases.first {
             navigationItem.leftBarButtonItem = nil
-            isModalInPresentation = true
         }
     }
     
@@ -97,11 +97,14 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
     }
     
     @IBAction private func cancel() {
+        deleteRestructuredThoughtIfNecessary()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func deleteRestructuredThoughtIfNecessary() {
         if restructuredThought?.answer(to: CognitiveChallenge.allCases.first) == nil {
             PersistenceManager.shared.delete(restructuredThought)
         }
-        
-        dismiss(animated: true, completion: nil)
     }
     
     
@@ -130,6 +133,10 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
         } else {
             return true
         }
+    }
+    
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+        deleteRestructuredThoughtIfNecessary()
     }
     
     
