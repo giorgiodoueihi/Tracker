@@ -80,6 +80,16 @@ class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - UITextViewDelegate
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newString = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        if CharacterSet.newlines.contains(newString.last) {
+            done()
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
         tableView.beginUpdates() /// Resizes `thoughtTextView` cell
         configureForThoughtTextField()

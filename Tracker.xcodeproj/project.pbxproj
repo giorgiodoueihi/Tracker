@@ -18,6 +18,7 @@
 		4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415B726248A1A1A00CD1C09 /* Thought.swift */; };
 		4415D88F2514C63900B130AF /* RestructuredThought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D88E2514C63900B130AF /* RestructuredThought.swift */; };
 		4415D8932514C8A900B130AF /* Dateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D8922514C8A900B130AF /* Dateable.swift */; };
+		442A05AA25353A260090DF7B /* CharacterSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A05A925353A260090DF7B /* CharacterSet+Extensions.swift */; };
 		446536A425182A6A00B7495A /* RestructureThoughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */; };
 		446536AB25182B6600B7495A /* CognitiveChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446536AA25182B6600B7495A /* CognitiveChallenge.swift */; };
 		4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4473B20E249EED3800AC7AE5 /* RoundedButton.swift */; };
@@ -51,6 +52,7 @@
 		4415B726248A1A1A00CD1C09 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		4415D88E2514C63900B130AF /* RestructuredThought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructuredThought.swift; sourceTree = "<group>"; };
 		4415D8922514C8A900B130AF /* Dateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateable.swift; sourceTree = "<group>"; };
+		442A05A925353A260090DF7B /* CharacterSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterSet+Extensions.swift"; sourceTree = "<group>"; };
 		446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructureThoughtViewController.swift; sourceTree = "<group>"; };
 		446536AA25182B6600B7495A /* CognitiveChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitiveChallenge.swift; sourceTree = "<group>"; };
 		4473B20E249EED3800AC7AE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				44760A832532E85800C1F8A9 /* UIStoryboard+Extensions.swift */,
 				44760A862532E8C600C1F8A9 /* UIStoryboardSegue+Extensions.swift */,
 				44760A892532E8E000C1F8A9 /* UIViewController+Extensions.swift */,
+				442A05A925353A260090DF7B /* CharacterSet+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				4415B717248A153600CD1C09 /* Tracker.xcdatamodeld in Sources */,
 				449EDEF3249EFC640052B59F /* DistressPill.swift in Sources */,
 				4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */,
+				442A05AA25353A260090DF7B /* CharacterSet+Extensions.swift in Sources */,
 				449EDEF5249EFE950052B59F /* ThoughtCell.swift in Sources */,
 				44760A872532E8C600C1F8A9 /* UIStoryboardSegue+Extensions.swift in Sources */,
 				4488003224A34E4200798BD1 /* DistressView.swift in Sources */,

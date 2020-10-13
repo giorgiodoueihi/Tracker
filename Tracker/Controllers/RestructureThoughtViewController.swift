@@ -50,6 +50,7 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
     private func setupBarButtonItems() {
         nextButton.title = isLastChallenge ? "Done" : "Next"
         nextButton.style = isLastChallenge ? .done : .plain
+        textView.returnKeyType = isLastChallenge ? .done : .next
     }
     
     
@@ -120,7 +121,17 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
         configureNextButton()
         tableView.endUpdates()
     }
-        
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newString = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        if CharacterSet.newlines.contains(newString.last) {
+            next()
+            return false
+        } else {
+            return true
+        }
+    }
+    
     
     // MARK: - Helpers
     
