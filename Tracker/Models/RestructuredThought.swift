@@ -64,6 +64,10 @@ class RestructuredThought: NSManagedObject, Dateable, Identifiable {
     }
     
     func record(answer: String?, to challenge: CognitiveChallenge?) {
+        guard answer?.isEmpty == false else {
+            return
+        }
+
         switch challenge {
         case .evidenceFor:
             evidenceFor = answer

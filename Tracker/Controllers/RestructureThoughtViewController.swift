@@ -8,12 +8,14 @@
 
 import UIKit
 
-class RestructureThoughtViewController: UITableViewController, UITextViewDelegate {
+class RestructureThoughtViewController: UITableViewController, UITextViewDelegate, UIAdaptivePresentationControllerDelegate {
     
     @IBOutlet private var textView: PlaceholderTextView!
+    @IBOutlet private var cancelButton: UIBarButtonItem!
     @IBOutlet private var nextButton: UIBarButtonItem!
     @IBOutlet private var prompt: UILabel!
     
+    var restructuredThought: RestructuredThought!
     var challenge: CognitiveChallenge? {
         didSet {
             configureForChallenge()
@@ -25,39 +27,29 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
         super.viewDidLoad()
         
         setupBarButtonItems()
+        configurePrompt()
+        configurePrefilledTextField()
+        configureNextButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        configurePrompt()
-        configurePrefilledTextField()
-        configureNextButton()
         textView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        PersistenceManager.shared.saveIfNecessary()
         textView.resignFirstResponder()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
         
-        if segue.segueIdentifier == .restructureThought {
-            restructuredThought?.record(answer: textView.text, to: challenge)
-        }
-    }
-    
     
     // MARK: - Setup
     
     private func setupBarButtonItems() {
         nextButton.title = isLastChallenge ? "Done" : "Next"
         nextButton.style = isLastChallenge ? .done : .plain
-        nextButton.isEnabled = false
     }
     
     
@@ -66,9 +58,9 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
     private func configureForChallenge() {
         let currentIndex = challenge?.currentIndex ?? 0
         navigationItem.title = "Question \(currentIndex + 1) of \(CognitiveChallenge.allCases.count)"
-        if currentIndex == 0 {
-            let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-            navigationItem.leftBarButtonItem = cancelButton
+        if challenge != CognitiveChallenge.allCases.first {
+            navigationItem.leftBarButtonItem = nil
+            isModalInPresentation = true
         }
     }
     
@@ -90,7 +82,24 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
     
     // MARK: - Actions
     
-    @objc private func cancel() {
+    @IBAction private func next() {
+        restructuredThought?.record(answer: textView.text, to: challenge)
+        switch isLastChallenge {
+        case true:
+            dismiss(animated: true, completion: nil)
+        case false:
+            let controller = UIStoryboard.instantiate(RestructureThoughtViewController.self)
+            controller.challenge = challenge?.nextChallenge
+            controller.restructuredThought = restructuredThought
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
+    @IBAction private func cancel() {
+        if restructuredThought?.answer(to: CognitiveChallenge.allCases.first) == nil {
+            PersistenceManager.shared.delete(restructuredThought)
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -98,11 +107,9 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
     // MARK: - UIScrollViewDelegate
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        guard scrollView == tableView else {
-            return
+        if scrollView == tableView {
+            textView.resignFirstResponder()
         }
-
-        textView.resignFirstResponder()
     }
     
     
@@ -113,13 +120,9 @@ class RestructureThoughtViewController: UITableViewController, UITextViewDelegat
         configureNextButton()
         tableView.endUpdates()
     }
-    
+        
     
     // MARK: - Helpers
-    
-    var restructuredThought: RestructuredThought? {
-        return (navigationController as? RestructureThoughtNavigationController)?.restructuredThought
-    }
     
     var isLastChallenge: Bool {
         return challenge?.nextChallenge == nil

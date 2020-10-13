@@ -18,32 +18,3 @@ enum SegueIdentifier: String {
     case restructureThought
     case viewThoughtDetail
 }
-
-extension UIViewController {
-
-    /// Helper method that performs a `UIStoryboardSegue`
-    ///
-    /// - Parameters:
-    ///     - identifier: The `SegueIdentifier` to perform.
-
-    func performViewControllerSegue(identifier: SegueIdentifier) {
-        performSegue(withIdentifier: identifier.rawValue, sender: self)
-    }
-
-}
-
-extension UIStoryboardSegue {
-
-    /// Helper variable that returns `identifier` as a `SegueIdentifier`
-    ///
-    /// This prevents working with `String` types, which is never safe.
-
-    var segueIdentifier: SegueIdentifier? {
-        guard let identifier = identifier else {
-            return nil
-        }
-
-        return SegueIdentifier(rawValue: identifier)
-    }
-    
-}

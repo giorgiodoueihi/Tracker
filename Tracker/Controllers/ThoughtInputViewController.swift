@@ -14,13 +14,14 @@ class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     @IBOutlet private var distressSlider: UISlider!
     @IBOutlet private var doneButton: UIBarButtonItem!
 
-    /// The thought that is currently being edited
-    ///
-    /// If this variable is `nil`, then we are creating a new `Thought`.
+    var thought: Thought?
     
-    var editingThought: Thought?
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -36,7 +37,7 @@ class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     }
     
     private func configureForEditingThought() {
-        switch editingThought {
+        switch thought {
         case .none:
             navigationItem.title = "Add new thought"
             thoughtTextView.becomeFirstResponder()
@@ -56,19 +57,14 @@ class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     }
     
     @IBAction private func done() {
-        guard let textFieldContents = thoughtTextView.text else { /// Should never be called, since we check for `.isEmpty`
-            return
-        }
-        
-        switch editingThought {
+        switch thought {
         case .none:
-            _ = Thought(contents: textFieldContents, distress: distressSlider.value)
+            thought = Thought(contents: thoughtTextView.text, distress: distressSlider.value)
         case .some(let thought):
-            thought.contents = textFieldContents
+            thought.contents = thoughtTextView.text
             thought.distress = Int(distressSlider.value * 10)
         }
         
-        PersistenceManager.shared.saveIfNecessary()
         dismiss(animated: true, completion: nil)
     }
     
@@ -76,11 +72,9 @@ class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
     // MARK: - UIScrollViewDelegate
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        guard scrollView == tableView else {
-            return
+        if scrollView == tableView {
+            thoughtTextView.resignFirstResponder()
         }
-
-        thoughtTextView.resignFirstResponder()
     }
     
     

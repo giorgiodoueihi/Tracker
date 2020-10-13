@@ -19,9 +19,11 @@
 		4415D88F2514C63900B130AF /* RestructuredThought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D88E2514C63900B130AF /* RestructuredThought.swift */; };
 		4415D8932514C8A900B130AF /* Dateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D8922514C8A900B130AF /* Dateable.swift */; };
 		446536A425182A6A00B7495A /* RestructureThoughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */; };
-		446536A825182AC500B7495A /* RestructureThoughtNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446536A725182AC500B7495A /* RestructureThoughtNavigationController.swift */; };
 		446536AB25182B6600B7495A /* CognitiveChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446536AA25182B6600B7495A /* CognitiveChallenge.swift */; };
 		4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4473B20E249EED3800AC7AE5 /* RoundedButton.swift */; };
+		44760A842532E85800C1F8A9 /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44760A832532E85800C1F8A9 /* UIStoryboard+Extensions.swift */; };
+		44760A872532E8C600C1F8A9 /* UIStoryboardSegue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44760A862532E8C600C1F8A9 /* UIStoryboardSegue+Extensions.swift */; };
+		44760A8A2532E8E000C1F8A9 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44760A892532E8E000C1F8A9 /* UIViewController+Extensions.swift */; };
 		4488003224A34E4200798BD1 /* DistressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488003124A34E4200798BD1 /* DistressView.swift */; };
 		449EDEF1249EF7CE0052B59F /* DistressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF0249EF7CE0052B59F /* DistressSlider.swift */; };
 		449EDEF3249EFC640052B59F /* DistressPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EDEF2249EFC640052B59F /* DistressPill.swift */; };
@@ -50,9 +52,11 @@
 		4415D88E2514C63900B130AF /* RestructuredThought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructuredThought.swift; sourceTree = "<group>"; };
 		4415D8922514C8A900B130AF /* Dateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateable.swift; sourceTree = "<group>"; };
 		446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructureThoughtViewController.swift; sourceTree = "<group>"; };
-		446536A725182AC500B7495A /* RestructureThoughtNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestructureThoughtNavigationController.swift; sourceTree = "<group>"; };
 		446536AA25182B6600B7495A /* CognitiveChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitiveChallenge.swift; sourceTree = "<group>"; };
 		4473B20E249EED3800AC7AE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		44760A832532E85800C1F8A9 /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
+		44760A862532E8C600C1F8A9 /* UIStoryboardSegue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboardSegue+Extensions.swift"; sourceTree = "<group>"; };
+		44760A892532E8E000C1F8A9 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		4488003124A34E4200798BD1 /* DistressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressView.swift; sourceTree = "<group>"; };
 		449EDEF0249EF7CE0052B59F /* DistressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSlider.swift; sourceTree = "<group>"; };
 		449EDEF2249EFC640052B59F /* DistressPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressPill.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				44DD2F44248A1EC500B514F9 /* Controllers */,
 				44DD2F45248A1FDD00B514F9 /* Managers & Delegates */,
 				4415D8952514C8B500B130AF /* Protocols */,
+				44760A812532E81E00C1F8A9 /* Extensions */,
 				4415B723248A154C00CD1C09 /* Tracker.entitlements */,
 				4415B715248A153600CD1C09 /* Tracker.xcdatamodeld */,
 				4415B712248A153600CD1C09 /* Main.storyboard */,
@@ -133,6 +138,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		44760A812532E81E00C1F8A9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				44760A832532E85800C1F8A9 /* UIStoryboard+Extensions.swift */,
+				44760A862532E8C600C1F8A9 /* UIStoryboardSegue+Extensions.swift */,
+				44760A892532E8E000C1F8A9 /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		44DD2F43248A1EB000B514F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +165,6 @@
 				4415B710248A153600CD1C09 /* HomeViewController.swift */,
 				44D37588252E9C5800C950ED /* ThoughtDetailViewController.swift */,
 				44DD2F46248A20C700B514F9 /* ThoughtInputViewController.swift */,
-				446536A725182AC500B7495A /* RestructureThoughtNavigationController.swift */,
 				446536A325182A6A00B7495A /* RestructureThoughtViewController.swift */,
 			);
 			path = Controllers;
@@ -238,15 +252,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44760A8A2532E8E000C1F8A9 /* UIViewController+Extensions.swift in Sources */,
 				4415B717248A153600CD1C09 /* Tracker.xcdatamodeld in Sources */,
 				449EDEF3249EFC640052B59F /* DistressPill.swift in Sources */,
 				4415B725248A15E500CD1C09 /* PersistenceManager.swift in Sources */,
 				449EDEF5249EFE950052B59F /* ThoughtCell.swift in Sources */,
+				44760A872532E8C600C1F8A9 /* UIStoryboardSegue+Extensions.swift in Sources */,
 				4488003224A34E4200798BD1 /* DistressView.swift in Sources */,
 				4415B711248A153600CD1C09 /* HomeViewController.swift in Sources */,
+				44760A842532E85800C1F8A9 /* UIStoryboard+Extensions.swift in Sources */,
 				4415B727248A1A1A00CD1C09 /* Thought.swift in Sources */,
 				4415D88F2514C63900B130AF /* RestructuredThought.swift in Sources */,
-				446536A825182AC500B7495A /* RestructureThoughtNavigationController.swift in Sources */,
 				4473B20F249EED3800AC7AE5 /* RoundedButton.swift in Sources */,
 				4415B70D248A153600CD1C09 /* AppDelegate.swift in Sources */,
 				4415B70F248A153600CD1C09 /* SceneDelegate.swift in Sources */,

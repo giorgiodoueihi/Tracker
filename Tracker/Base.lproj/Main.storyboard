@@ -100,8 +100,6 @@ Seneca</string>
                         <outlet property="emptyStateStackView" destination="66D-7P-WiA" id="Dx9-Iq-fU0"/>
                         <outlet property="tableView" destination="nRL-qh-MzS" id="19X-j9-mfH"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="addNewThought" id="uvB-6T-KYb"/>
-                        <segue destination="fA7-k1-SIB" kind="show" identifier="editThought" id="oDE-o7-GdM"/>
-                        <segue destination="2ee-ti-hIv" kind="presentation" identifier="restructureThought" id="LZv-K8-1vT"/>
                         <segue destination="qd9-b4-S4B" kind="show" identifier="viewThoughtDetail" id="jrV-Hu-AeF"/>
                     </connections>
                 </viewController>
@@ -118,7 +116,7 @@ Seneca</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Restructured Thought" id="ZbG-qY-Z9q" customClass="RestructuredThoughtCell" customModule="Tracker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RestructuredThoughtCell" id="ZbG-qY-Z9q" customClass="RestructuredThoughtCell" customModule="Tracker" customModuleProvider="target">
                                 <rect key="frame" x="20" y="55.5" width="374" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZbG-qY-Z9q" id="b3m-GI-s6W">
@@ -162,15 +160,20 @@ Seneca</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Thought" largeTitleDisplayMode="never" id="ChL-0b-9J4"/>
+                    <connections>
+                        <segue destination="2ee-ti-hIv" kind="presentation" identifier="restructureThought" id="5Ce-Fe-glT"/>
+                        <segue destination="fA7-k1-SIB" kind="presentation" identifier="editThought" id="tNE-80-UVF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="av7-PA-Yob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="343" y="110"/>
         </scene>
-        <!--Restructure Thought Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="A5I-q5-lmC">
             <objects>
-                <navigationController id="2ee-ti-hIv" customClass="RestructureThoughtNavigationController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="2ee-ti-hIv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5sP-qr-v9Z"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qV2-9e-4xg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -181,12 +184,12 @@ Seneca</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GYe-nn-OaY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-717" y="888"/>
+            <point key="canvasLocation" x="1378" y="110"/>
         </scene>
         <!--Restructure thought-->
         <scene sceneID="aYD-IS-zW7">
             <objects>
-                <tableViewController id="KYV-sU-fSP" customClass="RestructureThoughtViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RestructureThoughtViewController" id="KYV-sU-fSP" customClass="RestructureThoughtViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="BRQ-hX-Su3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -257,13 +260,19 @@ Seneca</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Restructure thought" id="GYS-In-rdf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="m1B-hM-CQY">
+                            <connections>
+                                <action selector="cancel" destination="KYV-sU-fSP" id="sDm-9Q-bg5"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Ccj-XH-vzj">
                             <connections>
-                                <segue destination="KYV-sU-fSP" kind="show" identifier="restructureThought" id="v3D-Ba-HK3"/>
+                                <action selector="next" destination="KYV-sU-fSP" id="lKb-d1-kjb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="m1B-hM-CQY" id="vf0-Rh-tnp"/>
                         <outlet property="nextButton" destination="Ccj-XH-vzj" id="1HI-Hm-IP6"/>
                         <outlet property="prompt" destination="hv4-8M-HpF" id="gIU-WQ-W0z"/>
                         <outlet property="textView" destination="0iu-O2-QsK" id="9IS-o5-4ww"/>
@@ -271,7 +280,7 @@ Seneca</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afA-XD-enL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="888"/>
+            <point key="canvasLocation" x="2420" y="110"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uh2-py-XCh">
@@ -279,7 +288,7 @@ Seneca</string>
                 <navigationController id="fA7-k1-SIB" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="gX4-kK-kkG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9dO-iP-pgr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -295,7 +304,7 @@ Seneca</string>
             <objects>
                 <tableViewController id="8Pn-Hw-yEn" customClass="ThoughtInputViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="sdn-UX-2LL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="NW2-jK-MVI">
@@ -389,13 +398,13 @@ Seneca</string>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="e5k-KR-y4Q">
                             <connections>
-                                <action selector="done" destination="8Pn-Hw-yEn" id="QNU-XN-mTr"/>
+                                <action selector="done" destination="8Pn-Hw-yEn" id="tH0-uJ-0eM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="distressSlider" destination="ulN-0O-ifP" id="Pan-CW-jE7"/>
-                        <outlet property="doneButton" destination="e5k-KR-y4Q" id="eqn-jg-hcx"/>
+                        <outlet property="doneButton" destination="e5k-KR-y4Q" id="OL5-wS-szL"/>
                         <outlet property="thoughtTextView" destination="eAQ-Yi-Ecj" id="GEe-1z-mjT"/>
                     </connections>
                 </tableViewController>
@@ -413,7 +422,7 @@ Seneca</string>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="uvB-6T-KYb"/>
+        <segue reference="tNE-80-UVF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>

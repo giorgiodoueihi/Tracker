@@ -13,19 +13,18 @@ struct PersistenceManager {
     static let shared = PersistenceManager()
         
     /// The primary `NSManagedObjectContext` for the app
-    ///
-    /// You shouldn't really need to communicate with this outside the `PersistenceManager` unless
-    /// making custom NSManagedObject initialisers.
+    let primaryContext: NSManagedObjectContext
     
-    let primaryContext: NSManagedObjectContext = {
+    
+    private init() {
         let container = NSPersistentCloudKitContainer(name: "Tracker")
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
                 fatalError("Unresolved error: \(error)")
             }
         }
-        return container.viewContext
-    }()
+        primaryContext = container.viewContext
+    }
     
     
     // MARK: - Actions
@@ -44,24 +43,24 @@ struct PersistenceManager {
         }
         
         primaryContext.delete(object)
-        saveIfNecessary()
     }
     
     
     // MARK: - Helpers
     
-    /// Attempts to create a new `NSFetchedResultsController` from the given parameters
-    ///
-    /// - Parameters:
-    ///     -  type: The NSManagedObject type to fetch
-    ///     -  sectionedBy: The object key used to section the controller
-    ///     -  sortedBy: The sort descriptors used to order the controller
-    
-    func fetchedResultsController<T: NSManagedObject>(type: T.Type, sectionedBy section: String?, sortedBy descriptors: [NSSortDescriptor]) -> NSFetchedResultsController<T>? {
-        let request = T.fetchRequest()
-        request.sortDescriptors = descriptors
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: primaryContext, sectionNameKeyPath: section, cacheName: nil)
-        return controller as? NSFetchedResultsController<T>
+    struct UpdateNotification {
+        
+        let changedObjects: [NSManagedObject]
+        
+        
+        init(_ notification: Notification) {
+            self.changedObjects = [NSInsertedObjectsKey, NSDeletedObjectsKey, NSUpdatedObjectsKey, NSRefreshedObjectsKey].reduce(into: []) { result, key in
+                if let set = notification.userInfo?[key] as? Set<NSManagedObject> {
+                    result += set
+                }
+            }
+        }
+        
     }
     
 }

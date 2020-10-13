@@ -16,9 +16,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet private var emptyStateStackView: UIStackView!
     
     /// The currently selected index path for the table view
-    ///
-    /// Because `tableView(:didSelectRowAt:)` presents an alert sheet, we need to
-    /// store the selection so that we may call upon it later.
     
     private var selectedTableViewIndexPath: IndexPath? {
         didSet {
@@ -32,30 +29,27 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        setupTableView()
         configureForEmptyState()
-        tableView.register(UINib(nibName: "ThoughtCell", bundle: nil), forCellReuseIdentifier: "ThoughtCell")
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        let selectedThought = thought(at: selectedTableViewIndexPath)
-        switch segue.segueIdentifier {
-        case .editThought:
-            let navigationController = segue.destination as? UINavigationController
-            let thoughtInputViewController = navigationController?.topViewController as? ThoughtInputViewController
-            thoughtInputViewController?.editingThought = selectedThought
-        case .restructureThought:
-            let navigationController = segue.destination as? RestructureThoughtNavigationController
-            navigationController?.restructuredThought = selectedThought?.restructuredThought ?? RestructuredThought(selectedThought!)
-        case .viewThoughtDetail:
-            let controller = segue.destination as? ThoughtDetailViewController
-            controller?.thought = selectedThought
-            controller?.restructuredThought = selectedThought?.restructuredThought
-        default:
-            break
+        if segue.segueIdentifier == .viewThoughtDetail {
+            let controller = segue.destination(as: ThoughtDetailViewController.self)
+            controller.thought = thought(at: selectedTableViewIndexPath)
         }
+    }
+    
+    
+    // MARK: - Setup
+    
+    private func setupTableView() {
+        let nibName = "ThoughtCell"
+        let nib = UINib(nibName: nibName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: nibName)
     }
     
     
@@ -71,7 +65,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Actions
     
     @IBAction private func addThought() {
-        performViewControllerSegue(identifier: .addNewThought)
+        perform(segue: .addNewThought)
     }
         
     private func delete(_ thought: Thought?) {
@@ -117,16 +111,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let thought = self.thought(at: indexPath)
-            let alertMessage = "Are you sure you want to delete this thought? This action cannot be undone."
-            let alert = UIAlertController(title: "Delete thought", message: alertMessage, preferredStyle: .alert)
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in self.delete(thought) }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alert.addAction(deleteAction)
-            alert.addAction(cancelAction)
-            present(alert, animated: true, completion: nil)
-        }
+        let thought = self.thought(at: indexPath)
+        let alertMessage = "Are you sure you want to delete this thought? This action cannot be undone."
+        let alert = UIAlertController(title: "Delete thought", message: alertMessage, preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in self.delete(thought) }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -139,7 +131,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedTableViewIndexPath = indexPath
-        performViewControllerSegue(identifier: .viewThoughtDetail)
+        perform(segue: .viewThoughtDetail)
     }
     
     
@@ -170,13 +162,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .insert:
+        if type == .insert {
             tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-        case .delete:
+        } else if type == .delete {
             tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-        default:
-            return // Can only ever insert or delete a section
         }
     }
     
@@ -202,6 +191,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     /// Returns whether the `resultsController` is empty
+    
     private var isEmpty: Bool {
         return resultsController?.sections?.isEmpty == true
     }
@@ -216,12 +206,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }()
     
     /// The `NSFetchedResultsController` that acts as the data source for the controller's `UITableView`
+    
     private lazy var resultsController: NSFetchedResultsController<Thought>? = {
         let descriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-        let controller = PersistenceManager.shared.fetchedResultsController(type: Thought.self, sectionedBy: "isoTimestamp", sortedBy: descriptors)
-        controller?.delegate = self
-        try? controller?.performFetch()
-        return controller
+        let request = Thought.fetchRequest()
+        request.sortDescriptors = descriptors
+        let controller = NSFetchedResultsController(
+            fetchRequest: request,
+            managedObjectContext: PersistenceManager.shared.primaryContext,
+            sectionNameKeyPath: "isoTimestamp",
+            cacheName: nil
+        )
+        controller.delegate = self
+        try? controller.performFetch()
+        return controller as? NSFetchedResultsController<Thought>
     }()
 
 }
