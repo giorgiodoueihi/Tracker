@@ -29,11 +29,18 @@ class ThoughtInputViewController: UITableViewController, UITextViewDelegate {
         configureForThoughtTextField()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        thoughtTextView.resignFirstResponder()
+    }
+    
     
     // MARK: - Configuring
     
     private func configureForThoughtTextField() {
         doneButton.isEnabled = thoughtTextView.text?.isEmpty == false
+        thoughtTextView.becomeFirstResponder()
     }
     
     private func configureForEditingThought() {
