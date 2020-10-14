@@ -15,6 +15,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet private var addButton: UIBarButtonItem!
     @IBOutlet private var emptyStateStackView: UIStackView!
     
+    private let pullToAddThoughtControl = PullToAddThoughtControl()
+    
     /// The currently selected index path for the table view
     
     private var selectedTableViewIndexPath: IndexPath? {
@@ -50,6 +52,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let nibName = "ThoughtCell"
         let nib = UINib(nibName: nibName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: nibName)
+        tableView.refreshControl = pullToAddThoughtControl
+        pullToAddThoughtControl.addTarget(self, action: #selector(addThought), for: .valueChanged)
     }
     
     
@@ -66,6 +70,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction private func addThought() {
         perform(segue: .addNewThought)
+        if pullToAddThoughtControl.isRefreshing {
+            pullToAddThoughtControl.endRefreshing()
+            tableView.setContentOffset(.zero, animated: true)
+        }
     }
         
     private func delete(_ thought: Thought?) {
@@ -172,6 +180,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
         configureForEmptyState()
+    }
+    
+    
+    // MARK: - UIScrollViewDelegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pullToAddThoughtControl.alpha = min(abs(scrollView.contentOffset.y) / 100, 1.0)
     }
     
     
