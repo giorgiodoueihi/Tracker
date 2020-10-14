@@ -73,16 +73,22 @@ Seneca</string>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldN-JB-bgW" customClass="PullToAddThoughtView" customModule="Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100" width="414" height="20.5"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="1Rj-hj-90W"/>
+                            <constraint firstItem="ldN-JB-bgW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2fJ-YA-wmM"/>
                             <constraint firstItem="nRL-qh-MzS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3jC-Bq-QkD"/>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MDy-b4-JUk"/>
                             <constraint firstAttribute="bottom" secondItem="nRL-qh-MzS" secondAttribute="bottom" id="RYd-Ya-XxK"/>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="SXn-9i-P30"/>
+                            <constraint firstItem="ldN-JB-bgW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="aew-q4-F6u"/>
                             <constraint firstItem="66D-7P-WiA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ejo-1d-9vy"/>
+                            <constraint firstItem="ldN-JB-bgW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-40" id="j1k-Xy-82g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nRL-qh-MzS" secondAttribute="trailing" id="m0E-wg-GnZ"/>
                             <constraint firstItem="nRL-qh-MzS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mXK-CK-mN2"/>
                         </constraints>
@@ -98,6 +104,7 @@ Seneca</string>
                     <connections>
                         <outlet property="addButton" destination="wwX-bt-c2C" id="Ffd-Rc-dOq"/>
                         <outlet property="emptyStateStackView" destination="66D-7P-WiA" id="Dx9-Iq-fU0"/>
+                        <outlet property="pullToAddThoughtView" destination="ldN-JB-bgW" id="L9c-B4-uNO"/>
                         <outlet property="tableView" destination="nRL-qh-MzS" id="19X-j9-mfH"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="addNewThought" id="uvB-6T-KYb"/>
                         <segue destination="qd9-b4-S4B" kind="show" identifier="viewThoughtDetail" id="jrV-Hu-AeF"/>
@@ -288,7 +295,7 @@ Seneca</string>
                 <navigationController id="fA7-k1-SIB" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="gX4-kK-kkG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9dO-iP-pgr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -304,7 +311,7 @@ Seneca</string>
             <objects>
                 <tableViewController id="8Pn-Hw-yEn" customClass="ThoughtInputViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="sdn-UX-2LL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="NW2-jK-MVI">
@@ -422,7 +429,7 @@ Seneca</string>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="tNE-80-UVF"/>
+        <segue reference="uvB-6T-KYb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>
