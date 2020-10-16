@@ -73,8 +73,11 @@ Seneca</string>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldN-JB-bgW" customClass="PullToAddThoughtView" customModule="Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="100" width="414" height="20.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldN-JB-bgW" customClass="CircularProgressView" customModule="Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100" width="414" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="bFO-KJ-zn6"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -104,7 +107,7 @@ Seneca</string>
                     <connections>
                         <outlet property="addButton" destination="wwX-bt-c2C" id="Ffd-Rc-dOq"/>
                         <outlet property="emptyStateStackView" destination="66D-7P-WiA" id="Dx9-Iq-fU0"/>
-                        <outlet property="pullToAddThoughtView" destination="ldN-JB-bgW" id="L9c-B4-uNO"/>
+                        <outlet property="progressView" destination="ldN-JB-bgW" id="L9c-B4-uNO"/>
                         <outlet property="tableView" destination="nRL-qh-MzS" id="19X-j9-mfH"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="addNewThought" id="uvB-6T-KYb"/>
                         <segue destination="qd9-b4-S4B" kind="show" identifier="viewThoughtDetail" id="jrV-Hu-AeF"/>

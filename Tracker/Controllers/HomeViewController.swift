@@ -14,7 +14,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var addButton: UIBarButtonItem!
     @IBOutlet private var emptyStateStackView: UIStackView!
-    @IBOutlet private var pullToAddThoughtView: PullToAddThoughtView!
+    @IBOutlet private var progressView: CircularProgressView!
     
     /// The currently selected index path for the table view
     
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func setupPullToAddThoughtView() {
-        pullToAddThoughtView.progress = 0
+        progressView.progress = 0
     }
     
     
@@ -151,7 +151,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         addButton.isEnabled = !editing
         editButtonItem.isEnabled = !isEmpty
         tableView.setEditing(editing, animated: animated)
-        pullToAddThoughtView.isHidden = editing
+        progressView.isHidden = editing
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -203,11 +203,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - UIScrollViewDelegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pullToAddThoughtView.progress = Float(min(-scrollView.contentOffset.y / 80, 1.0))
+        progressView.progress = Float(min(-scrollView.contentOffset.y / 100, 1.0))
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if pullToAddThoughtView.progress == 1.0, !tableView.isEditing {
+        if progressView.progress == 1.0, !tableView.isEditing {
             DispatchQueue.main.async { [weak self] in
                 self?.addThought()
             }
