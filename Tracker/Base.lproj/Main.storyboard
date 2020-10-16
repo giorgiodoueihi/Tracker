@@ -73,7 +73,7 @@ Seneca</string>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldN-JB-bgW" customClass="PullToAddThoughtView" customModule="Tracker" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldN-JB-bgW" customClass="PullToAddThoughtView" customModule="Tracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="100" width="414" height="20.5"/>
                             </view>
                         </subviews>
@@ -108,6 +108,7 @@ Seneca</string>
                         <outlet property="tableView" destination="nRL-qh-MzS" id="19X-j9-mfH"/>
                         <segue destination="fA7-k1-SIB" kind="show" identifier="addNewThought" id="uvB-6T-KYb"/>
                         <segue destination="qd9-b4-S4B" kind="show" identifier="viewThoughtDetail" id="jrV-Hu-AeF"/>
+                        <segue destination="fA7-k1-SIB" kind="presentation" identifier="editThought" id="hgO-Rb-YmJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -295,7 +296,7 @@ Seneca</string>
                 <navigationController id="fA7-k1-SIB" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="gX4-kK-kkG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9dO-iP-pgr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -311,7 +312,7 @@ Seneca</string>
             <objects>
                 <tableViewController id="8Pn-Hw-yEn" customClass="ThoughtInputViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="sdn-UX-2LL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="NW2-jK-MVI">
@@ -429,7 +430,7 @@ Seneca</string>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="uvB-6T-KYb"/>
+        <segue reference="hgO-Rb-YmJ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>

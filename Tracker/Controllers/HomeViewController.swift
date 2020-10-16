@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private var selectedTableViewIndexPath: IndexPath? {
         didSet {
-            if let newValue = selectedTableViewIndexPath {
+            if let newValue = selectedTableViewIndexPath, tableView.indexPathForSelectedRow == newValue {
                 tableView.deselectRow(at: newValue, animated: true)
             }
         }
@@ -39,9 +39,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.segueIdentifier == .viewThoughtDetail {
+        switch segue.segueIdentifier {
+        case .viewThoughtDetail:
             let controller = segue.destination(as: ThoughtDetailViewController.self)
             controller.thought = thought(at: selectedTableViewIndexPath)
+        case .editThought:
+            let navigationController = segue.destination(as: UINavigationController.self)
+            let thoughtInputViewController = navigationController.topViewController as? ThoughtInputViewController
+            thoughtInputViewController?.thought = thought(at: selectedTableViewIndexPath)
+        default:
+            break
         }
     }
     
@@ -72,10 +79,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction private func addThought() {
         perform(segue: .addNewThought)
-    }
-        
-    private func delete(_ thought: Thought?) {
-        PersistenceManager.shared.delete(thought)
     }
     
     
@@ -108,23 +111,38 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if tableView.isEditing {
+            return .init(actions: [deleteAction(forRowAt: indexPath)])
+        } else {
+            return .init(actions: [deleteAction(forRowAt: indexPath), editAction(forRowAt: indexPath)])
+        }
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
+    private func deleteAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
+        return .init(style: .destructive, title: "Delete") { action, view, completion in
+            let alertMessage = "Are you sure you want to delete this thought? This action cannot be undone."
+            let alert = UIAlertController(title: "Delete thought", message: alertMessage, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                completion(false)
+            }
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+                let thought = self?.thought(at: indexPath)
+                PersistenceManager.shared.delete(thought)
+                completion(true)
+            }
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let thought = self.thought(at: indexPath)
-        let alertMessage = "Are you sure you want to delete this thought? This action cannot be undone."
-        let alert = UIAlertController(title: "Delete thought", message: alertMessage, preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in self.delete(thought) }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
+    private func editAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
+        return .init(style: .normal, title: "Edit") { action, view, completion in
+            self.selectedTableViewIndexPath = indexPath
+            self.perform(segue: .editThought)
+            completion(true)
+        }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -133,6 +151,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         addButton.isEnabled = !editing
         editButtonItem.isEnabled = !isEmpty
         tableView.setEditing(editing, animated: animated)
+        pullToAddThoughtView.isHidden = editing
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -188,7 +207,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if pullToAddThoughtView.progress == 1.0 {
+        if pullToAddThoughtView.progress == 1.0, !tableView.isEditing {
             DispatchQueue.main.async { [weak self] in
                 self?.addThought()
             }
