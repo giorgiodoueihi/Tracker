@@ -80,7 +80,7 @@ class CircularProgressView: UIView {
     
     private func setupCircularPath() {
         let centre = CGPoint(x: contentView.frame.size.width / 2, y: contentView.frame.size.height / 2 )
-        let lineWidth: CGFloat = 4
+        let lineWidth: CGFloat = 2
         let start = -CGFloat.pi / 2
         let end = 3 * CGFloat.pi / 2
         let circularPath = UIBezierPath(arcCenter: centre, radius: 20, startAngle: start, endAngle: end, clockwise: true)
@@ -92,7 +92,7 @@ class CircularProgressView: UIView {
         progressLayer.path = circularPath.cgPath
         progressLayer.fillColor = UIColor.clear.cgColor
         progressLayer.lineCap = .round
-        progressLayer.lineWidth = 2.0
+        progressLayer.lineWidth = lineWidth
         progressLayer.strokeEnd = 0
         progressLayer.strokeColor = UIColor.systemIndigo.cgColor
         contentView.layer.addSublayer(circleLayer)

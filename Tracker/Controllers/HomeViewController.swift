@@ -16,6 +16,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet private var emptyStateStackView: UIStackView!
     @IBOutlet private var progressView: CircularProgressView!
     
+    private let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
+    private var hapticWasCalled = false
+    
     /// The currently selected index path for the table view
     
     private var selectedTableViewIndexPath: IndexPath? {
@@ -34,6 +37,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         setupPullToAddThoughtView()
         configureForEmptyState()
         navigationItem.leftBarButtonItem = editButtonItem
+        hapticGenerator.prepare()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -203,13 +207,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - UIScrollViewDelegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        progressView.progress = Float(min(-scrollView.contentOffset.y / 100, 1.0))
+        let progress = Float(min(-scrollView.contentOffset.y / 100, 1.0))
+        progressView.progress = progress
+        if progress >= 1.0, !hapticWasCalled {
+            hapticGenerator.impactOccurred()
+            hapticWasCalled = true
+        } else if progress < 1.0, hapticWasCalled {
+            hapticWasCalled = false
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if progressView.progress == 1.0, !tableView.isEditing {
             DispatchQueue.main.async { [weak self] in
                 self?.addThought()
+                self?.hapticGenerator.impactOccurred(intensity: 1)
+                self?.hapticWasCalled = false
             }
         }
     }
