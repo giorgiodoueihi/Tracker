@@ -221,7 +221,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if progressView.progress == 1.0, !tableView.isEditing {
             DispatchQueue.main.async { [weak self] in
                 self?.addThought()
-                self?.hapticGenerator.impactOccurred(intensity: 1)
                 self?.hapticWasCalled = false
             }
         }
